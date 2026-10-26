@@ -1,0 +1,1751 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>建築用語 × 画像 — 学習ツール v2.0</title>
+<style>
+:root{
+  --ink:#2C2C2B;--sub:#66635E;--paper:#FFFFFF;--soft:#F9F8F7;--soft2:#F0EFED;--line:#E6E5E3;--line2:#CFCCC6;
+  --blue:#2783DE;--blue-t:#1A68B5;--blue-s:#E5F2FC;
+  --green:#46A171;--green-t:#2E7550;--green-s:#E8F1EC;
+  --orange:#D5803B;--orange-t:#9A5419;--orange-s:#FBEBDE;
+  --red:#E56458;--red-t:#B3392D;--red-s:#FCE9E7;
+  --mono:ui-monospace,"SF Mono",Menlo,Consolas,"Liberation Mono",monospace;
+  --sans:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans","Hiragino Sans","Noto Sans JP","Noto Sans CJK JP","Yu Gothic UI",Meiryo,Arial,sans-serif;
+  --jp:"Hiragino Sans","Hiragino Kaku Gothic ProN","Noto Sans JP","Noto Sans CJK JP","Yu Gothic UI","Yu Gothic",Meiryo,sans-serif;
+  --r:8px;--rs:6px;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;color:var(--ink);font:16px/1.5 var(--sans);background-color:var(--soft);
+  background-image:linear-gradient(rgba(39,131,222,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(39,131,222,.06) 1px,transparent 1px);
+  background-size:24px 24px}
+[lang=ja]{font-family:var(--jp)}
+code{font-family:var(--mono);font-size:14px;background:var(--soft2);padding:1px 5px;border-radius:4px}
+
+/* ---------- header = khung tên bản vẽ ---------- */
+header{position:sticky;top:0;z-index:30;background:#fff;border-bottom:1px solid var(--line2)}
+.hwrap{max-width:1360px;margin:0 auto;padding:0 24px;display:flex;align-items:stretch;gap:16px;min-height:60px}
+.brand{display:flex;align-items:center;gap:12px;padding-right:20px;border-right:1px solid var(--line)}
+.brand b{display:block;font-size:17px;line-height:1.25;white-space:nowrap}
+.brand .rev{font:500 14px/1.3 var(--mono);color:var(--sub);letter-spacing:.05em;white-space:nowrap}
+nav{display:flex;align-items:stretch;gap:2px;margin-left:auto;overflow-x:auto;scrollbar-width:none}
+nav::-webkit-scrollbar{display:none}
+nav button{display:flex;align-items:center;gap:8px;border:0;border-bottom:2px solid transparent;background:none;padding:0 12px;min-height:44px;font:inherit;font-size:15px;color:var(--sub);cursor:pointer;white-space:nowrap}
+nav button .nx{font:500 14px var(--mono);color:var(--sub)}
+nav button:hover{color:var(--ink);background:var(--soft)}
+nav button.on{color:var(--ink);font-weight:600;border-bottom-color:var(--blue)}
+nav button.on .nx{color:var(--blue-t)}
+.cnt{display:inline-grid;place-items:center;min-width:24px;height:22px;padding:0 6px;border-radius:11px;background:var(--orange-s);color:var(--orange-t);font:600 14px/1 var(--mono)}
+main{max-width:1360px;margin:0 auto;padding:24px}
+
+/* ---------- thành phần chung ---------- */
+.card{background:var(--paper);border:1px solid var(--line);border-radius:var(--r);padding:16px;margin-bottom:16px}
+.row{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.grow{flex:1 1 auto;min-width:0}
+input.grow{min-width:200px}
+label.f{display:flex;flex-direction:column;gap:4px;font-size:14px;color:var(--sub)}
+input,select,textarea{font:inherit;font-size:15px;min-height:42px;padding:0 12px;border:1px solid var(--line2);border-radius:var(--rs);background:#fff;color:var(--ink);max-width:100%}
+textarea{padding:8px 12px}
+input[type=checkbox]{min-height:0;width:18px;height:18px;margin:0;accent-color:var(--blue-t)}
+input[type=file]{padding:8px;min-height:0}
+input:focus,select:focus,textarea:focus{outline:2px solid var(--blue-s);outline-offset:0;border-color:var(--blue)}
+:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;min-height:42px;padding:0 14px;border:1px solid var(--line2);background:#fff;color:var(--ink);border-radius:var(--rs);font:inherit;font-size:15px;line-height:1.2;cursor:pointer;white-space:nowrap;text-decoration:none}
+.btn:hover{background:var(--soft)}
+.btn.sm{min-height:38px;padding:0 12px;font-size:14px}
+.btn.pri{background:var(--blue-t);border-color:var(--blue-t);color:#fff;font-weight:600}
+.btn.pri:hover{background:#155A9E}
+.btn.ok{background:var(--green-t);border-color:var(--green-t);color:#fff;font-weight:600}
+.btn.ok:hover{background:#25613F}
+.btn.ghost{border-color:transparent;background:transparent;color:var(--blue-t)}
+.btn.ghost:hover{background:var(--blue-s)}
+.btn.on{background:var(--blue-s);border-color:var(--blue);color:var(--blue-t);font-weight:600}
+.btn:disabled,.ib:disabled{opacity:.45;cursor:not-allowed}
+.ib{display:inline-grid;place-items:center;width:38px;height:38px;flex:none;border:1px solid transparent;background:none;border-radius:var(--rs);cursor:pointer;font-size:17px;line-height:1;color:var(--ink);padding:0}
+.ib:hover:not(:disabled){background:var(--soft);border-color:var(--line)}
+.ib.on{color:#B86A1F}
+kbd{display:inline-grid;place-items:center;min-width:22px;height:22px;padding:0 5px;border:1px solid var(--line2);border-bottom-width:2px;border-radius:4px;background:#fff;font:500 14px/1 var(--mono);color:var(--sub)}
+.btn.pri kbd,.btn.ok kbd{background:transparent;color:#fff;border-color:rgba(255,255,255,.6)}
+.chip{display:inline-flex;align-items:center;min-height:26px;padding:0 9px;border-radius:var(--rs);background:var(--soft2);color:var(--ink);font-size:14px;line-height:1.3;margin:0 4px 4px 0;border:1px solid transparent;white-space:nowrap}
+.chip.b{background:var(--blue-s);color:var(--blue-t)}
+.chip.g{background:var(--green-s);color:var(--green-t)}
+.chip.y{background:var(--orange-s);color:var(--orange-t)}
+.chip.o{background:transparent;border-color:var(--line2);color:var(--sub)}
+.muted{color:var(--sub)}
+.sm,.small{font-size:14px}
+.mono{font-family:var(--mono)}
+.lab{font:500 14px/1.3 var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--sub);white-space:nowrap}
+.hide{display:none!important}
+.empty{padding:32px 16px;text-align:center;color:var(--sub);line-height:1.8}
+
+/* ---------- bảng (tab Danh sách) ---------- */
+table{width:100%;border-collapse:separate;border-spacing:0}
+.tblwrap{padding:0;overflow:auto;max-height:calc(100vh - 300px);min-height:260px;position:relative;overscroll-behavior:contain}
+th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:middle;font-size:14px}
+th{font:500 14px var(--mono);letter-spacing:.04em;text-transform:uppercase;color:var(--sub);position:sticky;top:0;background:var(--soft);z-index:6;border-bottom:0;box-shadow:inset 0 -1px 0 var(--line2);white-space:nowrap}
+tr:hover td{background:#FBFAF9}
+td.acts{white-space:nowrap}
+td.acts .btn{margin-right:4px}
+.lnk{border:0;background:none;padding:0;font:inherit;font-size:17px;font-weight:700;color:var(--ink);cursor:pointer;text-align:left}
+.lnk:hover{color:var(--blue-t);text-decoration:underline}
+.thumb{width:64px;height:44px;object-fit:cover;border-radius:4px;border:1px solid var(--line);background:var(--soft2);display:block}
+.st{display:inline-block;font-size:14px;font-weight:600;padding:2px 8px;border-radius:var(--rs);white-space:nowrap}
+.st.e{background:var(--soft2);color:var(--sub)}.st.a{background:var(--green-s);color:var(--green-t)}
+
+/* ---------- ảnh của từ (Tra từ) ---------- */
+.strip{margin-top:16px;padding-top:12px;border-top:1px solid var(--line)}
+.strip .sx{display:flex;gap:8px;margin-top:8px;flex-wrap:wrap}
+.strip img,.strip .sx-e{width:72px;height:54px;border-radius:4px;border:1px solid var(--line);object-fit:cover;background:var(--soft2)}
+.strip .sx-e{display:grid;place-items:center;border-style:dashed;font:14px var(--mono);color:var(--sub)}
+
+/* ---------- flashcard ---------- */
+.flash{border-radius:var(--r);border:1px solid var(--line2);background:#fff;padding:24px;text-align:center;min-height:360px;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:12px;margin-bottom:16px}
+.flash img{max-width:100%;max-height:300px;border-radius:var(--rs);border:1px solid var(--line)}
+.flash .thumbs{display:flex;gap:8px;flex-wrap:wrap;justify-content:center}
+.flash .thumbs img{width:150px;height:112px;object-fit:cover}
+.big{font-size:40px;font-weight:700;line-height:1.2}
+.kv{display:grid;grid-template-columns:96px minmax(0,1fr);gap:8px 12px;font-size:15px}
+.kv>b{font:500 14px var(--mono);color:var(--sub)}
+.toast{position:fixed;right:16px;bottom:16px;background:var(--ink);color:#fff;padding:12px 16px;border-radius:var(--r);font-size:15px;opacity:0;transform:translateY(8px);transition:.2s;z-index:80;max-width:360px;pointer-events:none}
+.toast.on{opacity:1;transform:none}
+.split{display:grid;grid-template-columns:340px minmax(0,1fr);gap:16px;align-items:start}
+.drop{border:1.5px dashed var(--line2);border-radius:var(--r);padding:16px;text-align:center;color:var(--sub);font-size:14px}
+.drop.hot{border-color:var(--blue);background:var(--blue-s)}
+details summary{cursor:pointer;font-weight:700;min-height:32px}
+
+/* ---------- tab Học ---------- */
+.learn{display:grid;grid-template-columns:300px minmax(0,1fr);gap:20px;align-items:start}
+.idx{position:sticky;top:84px;background:#fff;border:1px solid var(--line);border-radius:var(--r);display:flex;flex-direction:column;max-height:calc(100vh - 108px);min-height:420px;overflow:hidden}
+.idx-h{display:flex;align-items:center;gap:8px;padding:12px 16px;border-bottom:1px solid var(--line);min-height:52px}
+.idx-f{display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:12px 16px;border-bottom:1px solid var(--line);background:var(--soft)}
+.idx-f .full{grid-column:1/-1}
+.idx-f select,.idx-f input{width:100%;min-width:0;font-size:14px;padding:0 8px}
+.idx-f .btn{width:100%}
+.idx-l{flex:1;overflow:auto;overscroll-behavior:contain;padding:4px 0}
+.wi{display:grid;grid-template-columns:44px minmax(0,1fr) auto;align-items:center;gap:8px;width:100%;min-height:44px;padding:4px 14px 4px 13px;border:0;border-left:3px solid transparent;background:none;text-align:left;font:inherit;color:var(--ink);cursor:pointer}
+.wi:hover{background:var(--soft)}
+.wi.on{background:var(--blue-s);border-left-color:var(--blue)}
+.wn{font:14px var(--mono);color:var(--sub)}
+.wj{font-size:17px;font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.wm{display:flex;gap:6px;font:14px var(--mono);color:var(--sub)}
+.wm i{font-style:normal}
+.wm .s1{color:#B86A1F}.wm .ok{color:var(--green-t)}.wm .ng{color:var(--orange-t)}
+.work{min-width:0;container:work/inline-size}
+.lbar{display:flex;align-items:center;gap:8px;flex-wrap:wrap;background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:8px 12px;margin-bottom:20px}
+.tg{display:inline-flex;align-items:center;gap:8px;min-height:38px;padding:0 10px;border:1px solid var(--line);border-radius:var(--rs);font-size:14px;cursor:pointer;background:#fff;white-space:nowrap}
+.tg:has(input:checked){border-color:var(--blue);background:var(--blue-s);color:var(--blue-t)}
+.duo{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);gap:20px;align-items:stretch}
+@container work (max-width:720px){.duo{grid-template-columns:minmax(0,1fr)}}
+.pnl{position:relative;background:#fff;border:1px solid var(--line2);border-radius:var(--r);display:flex;flex-direction:column;min-width:0}
+.pnl::before,.pnl::after{content:"";position:absolute;width:14px;height:14px;pointer-events:none}
+.pnl::before{left:-6px;top:-6px;border-left:1.5px solid var(--blue);border-top:1.5px solid var(--blue)}
+.pnl::after{right:-6px;bottom:-6px;border-right:1.5px solid var(--blue);border-bottom:1.5px solid var(--blue)}
+.ph{display:flex;align-items:center;gap:10px;padding:8px 10px 8px 16px;border-bottom:1px solid var(--line);min-height:54px}
+.tag{display:inline-grid;place-items:center;width:28px;height:28px;flex:none;border-radius:4px;background:var(--ink);color:#fff;font:700 15px/1 var(--mono)}
+.pb{padding:24px;flex:1}
+.pf{display:flex;align-items:center;gap:8px;flex-wrap:wrap;padding:10px 12px;border-top:1px solid var(--line);background:var(--soft);border-radius:0 0 var(--r) var(--r)}
+.term{font-size:clamp(40px,4.4vw,58px);font-weight:700;line-height:1.15;letter-spacing:.02em;overflow-wrap:anywhere}
+.yrow{display:flex;align-items:center;gap:10px;flex-wrap:wrap;min-height:48px;margin:12px 0 20px}
+.yv{font-size:26px;font-weight:500;color:var(--blue-t);letter-spacing:.06em}
+.ycov{display:inline-flex;align-items:stretch;min-height:46px;padding:0;border:1px dashed var(--line2);border-radius:var(--rs);background:#fff;cursor:pointer;font:inherit;font-size:15px;color:var(--blue-t);overflow:hidden;text-align:left}
+.ycov .hz{width:92px;flex:none;background:repeating-linear-gradient(45deg,rgba(26,104,181,.38) 0 1px,transparent 1px 7px);border-right:1px dashed var(--line2)}
+.ycov .yl{display:flex;align-items:center;padding:0 12px}
+.ycov kbd{align-self:center;margin-right:10px}
+.ycov:hover{border-color:var(--blue);background:var(--blue-s)}
+.spec{display:grid;grid-template-columns:136px minmax(0,1fr);margin:0;border-top:1px solid var(--ink)}
+.spec dt,.spec dd{margin:0;padding:10px 0;border-bottom:1px solid var(--line)}
+.spec dt{font:500 14px/1.5 var(--mono);color:var(--sub);padding-right:12px}
+.spec dd{font-size:16px;overflow-wrap:anywhere}
+.spec dd.en{font-weight:600}
+.chips{margin-top:16px}
+.lst{font-weight:600;font-family:var(--sans)}
+.lst.known{color:var(--green-t)}.lst.weak{color:var(--orange-t)}.lst.new{color:var(--sub)}
+.keys{margin-top:16px;display:flex;gap:6px;flex-wrap:wrap;align-items:center}
+#pB{container:pb/inline-size}
+.slots{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:12px;padding:16px;flex:1;align-content:stretch;--sh:280px}
+.slots.n3,.slots.n4{--sh:180px}
+.slots.n3 .slot:nth-child(3){grid-column:1/-1}
+@container pb (max-width:460px){.slots,.slots.n3,.slots.n4{grid-template-columns:minmax(0,1fr);--sh:220px}.slots.n3 .slot:nth-child(3){grid-column:auto}}
+.slot{margin:0;border:1px solid var(--line2);border-radius:var(--rs);overflow:hidden;display:flex;flex-direction:column;background:#fff;min-width:0}
+.slot.hot{border-color:var(--blue);box-shadow:0 0 0 3px var(--blue-s)}
+.sl-box{position:relative;flex:1;min-height:var(--sh);background:var(--soft2)}
+.sl-im{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;cursor:zoom-in}
+.sl-cover{position:absolute;inset:0;width:100%;border:0;padding:0;cursor:pointer;display:grid;place-items:center;font:inherit;color:var(--blue-t);background:repeating-linear-gradient(45deg,rgba(39,131,222,.22) 0 1px,transparent 1px 10px),var(--soft)}
+.sl-cover .lbl{background:#fff;border:1px solid var(--line2);border-radius:var(--rs);padding:8px 14px;font-size:15px}
+.sl-cover:hover .lbl{border-color:var(--blue)}
+.sl-empty{position:absolute;inset:8px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;border:1.5px dashed var(--line2);border-radius:var(--rs);background:#fff;text-align:center;padding:8px}
+.slot.hot .sl-empty{border-color:var(--blue);background:var(--blue-s)}
+.sl-empty .hint{font-size:14px;color:var(--sub)}
+.slot figcaption{display:flex;align-items:center;gap:6px;padding:3px 4px 3px 12px;border-top:1px solid var(--line);min-height:44px}
+.slot figcaption .chip{margin:0}
+
+/* ---------- xem ảnh lớn ---------- */
+.lb{position:fixed;inset:0;z-index:70;background:rgba(25,25,25,.9);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;padding:72px 76px 24px}
+.lb img{max-width:100%;max-height:calc(100vh - 170px);object-fit:contain;background:#fff;border-radius:var(--rs)}
+.lb .cap{color:#fff;font-size:15px;text-align:center;max-width:900px}
+.lb .cap a{color:#9CCBF5}
+.lb .btn{position:absolute;background:rgba(255,255,255,.95)}
+.lbx{top:16px;right:16px;width:44px;padding:0}
+.lbn{top:50%;transform:translateY(-50%);width:48px;height:64px;padding:0;font-size:26px}
+.lbp{left:16px}.lbq{right:16px}
+
+@media (max-width:1100px){.learn{grid-template-columns:272px minmax(0,1fr)}}
+@media (max-width:900px){
+  header{position:static}
+  main{padding:16px}
+  .hwrap{padding:0 16px;flex-wrap:wrap;gap:0}
+  .brand{border-right:0;padding:10px 0 6px;width:100%}
+  nav{margin:0 -16px;padding:0 4px;width:calc(100% + 32px);border-top:1px solid var(--line)}
+  .learn,.split{grid-template-columns:minmax(0,1fr)}
+  .idx{position:static;max-height:none;min-height:0}
+  .idx-l{max-height:320px}
+  .pb{padding:20px 16px}
+  .lb{padding:64px 12px 16px}
+  .lbn{top:auto;bottom:16px;transform:none}
+}
+@media (max-width:480px){.spec{grid-template-columns:104px minmax(0,1fr)}.lbar .tg{flex:1 1 auto}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+/* ---------- bổ sung ---------- */
+.idx-l{position:relative}
+.brand svg{flex:none;display:block}
+.slot figcaption .cap{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:14px;color:var(--sub)}
+.slot figcaption .lab{min-width:14px}
+.slot.cov figcaption{background:var(--soft)}
+.sl-empty .btn{min-width:148px}
+.spec dt.ai{color:var(--blue-t)}
+.ib svg{display:block}
+td.acts .btn:last-child{margin-right:0}
+#lkSlots .strip{margin-top:0;padding-top:0;border-top:0}
+.wi:focus-visible{outline-offset:-2px}
+.pf #lnRun{flex:1 1 180px;min-width:0}
+.slot{container:slot/inline-size}
+.slot figcaption .acts{margin-left:auto;display:flex;gap:2px;flex:none}
+@container slot (max-width:300px){.slot figcaption .cap{display:none}}
+#pA .pf .btn{flex:1 1 0;min-width:0}
+.arow{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-top:16px;padding-top:12px;border-top:1px dashed var(--line2)}
+.ph .vt{white-space:nowrap}
+@container pb (max-width:460px){.ph .vt{display:none}}
+@media (max-width:900px){.learn .work{order:-1}}
+@media (max-width:480px){.ycov .hz{width:44px}}
+@media (max-width:600px){.keys{display:none}}
+td .lst{margin-top:4px;font-size:13px}
+td.more{text-align:center;padding:12px}
+td.acts .btn{vertical-align:middle}
+td.acts .btn svg{width:14px;height:14px}
+#lkDrop kbd{font-size:12px}
+/* ---------- thẻ ôn tập: mặt trước 用語 + ảnh, mặt sau cách đọc · nghĩa · giải thích ---------- */
+.flash.fc{position:relative;cursor:pointer;padding:56px 24px 48px}
+.flash .fmeta{position:absolute;top:12px;left:16px;right:16px;display:flex;align-items:center;gap:10px;font-size:14px;color:var(--sub);text-align:left}
+.flash .fmeta span[lang]{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.flash .fmeta .lst{flex:none}
+.fterm{font-size:clamp(40px,5vw,64px);font-weight:700;line-height:1.15;letter-spacing:.02em;overflow-wrap:anywhere}
+.flash.back .fterm{font-size:clamp(30px,3.4vw,42px)}
+.flash .yv{font-size:30px}
+.fvn{font-size:28px;font-weight:600;line-height:1.35;max-width:820px}
+.fimgs{display:grid;gap:12px;width:100%;justify-content:center;grid-template-columns:repeat(var(--n),minmax(0,var(--w)))}
+.fimgs.n1{--n:1;--w:480px}.fimgs.n2{--n:2;--w:360px}.fimgs.n3{--n:3;--w:290px}.fimgs.n4{--n:4;--w:240px}
+.flash .fimgs img{width:100%;max-height:none;aspect-ratio:4/3;object-fit:cover;display:block;background:var(--soft2)}
+.fnoimg{width:min(100%,360px);min-height:120px;display:grid;place-items:center;border:1.5px dashed var(--line2);border-radius:var(--rs);color:var(--sub);font-size:14px;background:var(--soft)}
+.flash .fhint{position:absolute;left:16px;right:16px;bottom:14px}
+.fback{width:100%;max-width:780px;text-align:left;margin-top:4px}
+.fback .chips{margin-top:12px}
+@media (max-width:600px){.fimgs.n2,.fimgs.n3,.fimgs.n4{--n:2;--w:1fr}.flash.fc{padding:52px 16px 48px}}
+.flash.fc.back{padding-bottom:24px}
+@media (max-width:600px){
+  #stCtl{display:grid;grid-template-columns:48px 1fr 1fr 48px;gap:8px}
+  #stPrev{grid-area:1/1}#stShow{grid-area:1/2/2/4}#stNext{grid-area:1/4}#stNo{grid-area:2/1/3/3}#stYes{grid-area:2/3/3/5}
+  #stCtl .grow{display:none}#stPos{grid-area:3/1/4/5;text-align:center}
+  #stCtl kbd,.fhint .kb{display:none}
+}
+/* xoá từ */
+td.acts .ib{vertical-align:middle;width:34px;height:34px}
+.ib.aDel{color:var(--sub)}
+.ib.aDel:hover{color:var(--red-t);background:var(--red-s);border-color:var(--red-s)}
+#btnDel:not(:disabled){color:var(--red-t);border-color:var(--red)}
+#btnDel:not(:disabled):hover{background:var(--red-s)}
+#addCard kbd{font-size:12px;height:20px}
+/* ---------- điện thoại / máy tính bảng ---------- */
+.ckl{display:inline-grid;place-items:center;min-width:36px;min-height:36px;margin:-9px;cursor:pointer;vertical-align:middle}
+.ckt{display:none}
+.flash .fmeta .mono{white-space:nowrap;flex:none}
+@media (pointer:coarse){
+  input,select,textarea,.idx-f input,.idx-f select{font-size:16px}   /* iPhone/iPad không tự phóng to khi chạm ô nhập */
+  .btn kbd,.ycov kbd,.fhint .kb,.keys{display:none}
+}
+@media (max-width:900px){
+  /* Danh sách: bảng → thẻ, không phải kéo ngang */
+  .tblwrap{max-height:none;min-height:0;overflow:visible;border:0;background:none;padding:0}
+  #tbl,#tbl thead,#tbl thead tr{display:block}
+  #tbl thead th{display:none}
+  #tbl thead th:first-child{display:block;position:static;width:auto!important;padding:0 0 12px;background:none;box-shadow:none;border:0;font:inherit;text-transform:none;letter-spacing:0;color:var(--ink)}
+  #tbl thead .ckl{display:inline-flex;gap:10px;margin:0;padding:0 14px;min-height:42px;border:1px solid var(--line2);border-radius:var(--rs);background:#fff;font-size:15px}
+  .ckt{display:inline}
+  #tbody{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,300px),1fr));gap:12px}
+  #tbody tr{display:grid;grid-template-columns:36px 36px minmax(0,1fr) 38px;grid-template-areas:"img img term star" "vn vn vn vn" "tag tag tag tag" "ck no st st" "act act act act";column-gap:10px;row-gap:8px;align-items:center;padding:12px;background:var(--paper);border:1px solid var(--line);border-radius:var(--r);min-width:0}
+  #tbody td{display:block;padding:0;border:0;background:none!important;min-width:0}
+  #tbody td:nth-child(1){grid-area:ck}
+  #tbody td:nth-child(1) .ckl{margin:0}
+  #tbody td:nth-child(2){grid-area:star;align-self:start}
+  #tbody td:nth-child(3){grid-area:img;align-self:start}
+  #tbody td:nth-child(4){grid-area:no;font-size:13px}
+  #tbody td:nth-child(5){grid-area:term;align-self:start}
+  #tbody td:nth-child(6){grid-area:vn;font-size:15px}
+  #tbody td:nth-child(7){grid-area:tag}
+  #tbody td:nth-child(7):empty{display:none}
+  #tbody td:nth-child(8){grid-area:st;display:flex;align-items:center;gap:4px 10px;flex-wrap:wrap}
+  #tbody td:nth-child(8) .lst{margin-top:0}
+  #tbody td.acts{grid-area:act;display:flex;flex-wrap:wrap;gap:6px;white-space:normal;padding-top:10px;border-top:1px solid var(--line)}
+  #tbody td.acts .btn{margin:0}
+  #tbody td.acts .aDel{margin-left:auto}
+  #tbody .thumb{width:100%;height:auto;aspect-ratio:4/3}
+  #tbody .lnk{font-size:20px;min-height:32px;min-width:32px;overflow-wrap:anywhere}
+  #tbody tr.mrow{display:block;grid-column:1/-1;padding:0;border:0;background:none}
+  #tbody tr.mrow td{display:block;padding:12px;text-align:center}
+}
+@media (max-width:600px){
+  nav{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0;overflow:visible}
+  nav button{justify-content:center;padding:0 4px;gap:5px;font-size:14px}
+  .fbar{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+  .fbar input.grow{grid-column:1/-1;min-width:0}
+  .fbar select,.fbar .btn{width:100%;min-width:0}
+  .toast{left:12px;right:12px;bottom:12px;max-width:none;text-align:center}
+}
+@media (max-width:340px){nav button .nx{display:none}}
+/* Ôn tập trên điện thoại / màn ngang: thẻ lên trước, bộ lọc xuống dưới */
+@media (max-width:600px),(max-height:500px){
+  #tab-study:not(.hide){display:flex;flex-direction:column}
+  #tab-study>.card:first-child{order:3}
+  #flash{order:1}
+  #stCtl{order:2}
+}
+@media (max-height:500px){.flash{min-height:0}}
+/* Học – ô B ở màn 320px: thu khoảng cách để nút ＋ không tràn */
+.ph .lab{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+@container pb (max-width:340px){#pB .ph{gap:6px;padding-left:12px}}
+/* form thêm từ trên điện thoại: mỗi ô 1 dòng, ô chọn ảnh không tràn */
+#addCard label.f{min-width:0;max-width:100%}
+#nFile{width:100%}
+@media (max-width:600px){#addCard label.f{flex:1 1 100%}#addCard label.f input{width:100%!important}}
+</style>
+</head>
+<body>
+<header>
+  <div class="hwrap">
+    <div class="brand">
+      <svg width="36" height="36" viewBox="0 0 36 36" aria-hidden="true"><rect x="1" y="1" width="34" height="34" rx="6" fill="#2C2C2B"/><path d="M8 26V15.5l10-7 10 7V26" fill="none" stroke="#fff" stroke-width="2" stroke-linejoin="round"/><path d="M14.5 26v-6.5h7V26" fill="none" stroke="#7FB7EC" stroke-width="2"/><path d="M5.5 26h25" stroke="#fff" stroke-width="2"/></svg>
+      <div><b lang="ja">建築用語 × 画像</b><span class="rev">STUDY SHEET · REV 2.0</span></div>
+    </div>
+    <nav aria-label="Chức năng">
+      <button data-tab="learn" class="on"><span class="nx">01</span>Học</button>
+      <button data-tab="list"><span class="nx">02</span>Danh sách</button>
+      <button data-tab="lookup"><span class="nx">03</span>Tra từ</button>
+      <button data-tab="study"><span class="nx">04</span>Ôn tập</button>
+      <button data-tab="save"><span class="nx">05</span>Lưu / Xuất</button>
+      <button data-tab="set"><span class="nx">06</span>Cài đặt</button>
+    </nav>
+  </div>
+</header>
+<main>
+
+<!-- ================= 01 HỌC ================= -->
+<section id="tab-learn">
+  <div class="learn">
+    <aside class="idx" aria-label="Danh mục từ">
+      <div class="idx-h"><span class="lab">Danh mục</span><span class="grow"></span><span class="mono sm muted" id="lCount">0</span></div>
+      <div class="idx-f">
+        <input id="lq" class="full" type="search" placeholder="Tìm 用語 / nghĩa / English…" aria-label="Tìm từ">
+        <select id="lField" aria-label="Lọc theo 分野"><option value="">分野: tất cả</option></select>
+        <select id="lPart" aria-label="Lọc theo 部位"><option value="">部位: tất cả</option></select>
+        <select id="lRow" aria-label="Lọc theo 50音"><option value="">50音: tất cả</option></select>
+        <select id="lImg" aria-label="Lọc theo ảnh"><option value="">Ảnh: tất cả</option><option value="has">Đã có ảnh</option><option value="none">Chưa có ảnh</option></select>
+        <select id="lLearn" aria-label="Lọc theo tiến độ"><option value="">Tiến độ: tất cả</option><option value="new">Chưa học</option><option value="weak">Chưa thuộc</option><option value="known">Đã thuộc</option></select>
+        <select id="lSort" aria-label="Sắp xếp"><option value="no">Sắp: No.</option><option value="yomi">Sắp: 50音</option><option value="rand">Sắp: ngẫu nhiên</option></select>
+        <button class="btn sm" id="lStar" aria-pressed="false">☆ Gắn sao</button>
+        <button class="btn sm ghost" id="lClear">Xoá lọc</button>
+      </div>
+      <div class="idx-l" id="lList" role="listbox" aria-label="Danh sách từ"></div>
+    </aside>
+
+    <div class="work" id="lWork">
+      <div class="lbar">
+        <button class="btn sm" id="lPrev">← Trước</button>
+        <span class="mono sm" id="lPos">0 / 0</span>
+        <button class="btn sm" id="lNext">Sau →</button>
+        <span class="grow"></span>
+        <label class="tg"><input type="checkbox" id="lHideY" checked> Che cách đọc</label>
+        <label class="tg"><input type="checkbox" id="lHideI" checked> Che ảnh</label>
+        <button class="btn sm" id="lReveal">Hiện tất cả <kbd>Space</kbd></button>
+      </div>
+
+      <div class="duo">
+        <article class="pnl" id="pA" aria-label="Ô 1 – Từ vựng">
+          <div class="ph"><span class="tag">A</span><span class="lab">用語 · Term</span><span class="grow"></span>
+            <span class="mono sm muted" id="aNo">No. —</span>
+            <button class="ib" id="aStar" aria-pressed="false" aria-label="Gắn sao" title="Gắn sao (S)">☆</button></div>
+          <div class="pb" id="aBody"></div>
+          <div class="pf">
+            <button class="btn" id="aNg">× Chưa thuộc <kbd>1</kbd></button>
+            <button class="btn ok" id="aOk">✓ Đã thuộc <kbd>2</kbd></button>
+          </div>
+        </article>
+
+        <article class="pnl" id="pB" aria-label="Ô 2 – Hình ảnh">
+          <div class="ph"><span class="tag">B</span><span class="lab">画像 · Images</span><span class="mono sm muted" id="bInfo"></span><span class="grow"></span>
+            <span class="sm muted vt">Vị trí</span>
+            <button class="ib" id="slotDel" aria-label="Bớt 1 vị trí ảnh" title="Bớt 1 vị trí ảnh">−</button>
+            <span class="mono" id="slotN">2</span>
+            <button class="ib" id="slotAdd" aria-label="Thêm 1 vị trí ảnh" title="Thêm 1 vị trí ảnh (tối đa 4)">＋</button></div>
+          <div class="slots n2" id="slots"></div>
+          <div class="pf">
+            <button class="btn pri" id="bUp">↑ Tải ảnh lên <kbd>U</kbd></button>
+            <button class="btn" id="bFind" title="Mở trang tìm hình ảnh với từ này ở tab mới (F)"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 4h6v6"/><path d="M20 4l-9 9"/><path d="M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg> Tìm ảnh <kbd>F</kbd></button>
+            <button class="btn" id="bAll">Hiện ảnh <kbd>I</kbd></button>
+            <span class="sm muted grow" id="lnRun">Kéo–thả hoặc Ctrl+V để dán ảnh</span>
+          </div>
+        </article>
+      </div>
+
+      <div class="keys sm muted"><span class="lab">Phím tắt</span>
+        <kbd>←</kbd><kbd>→</kbd> từ trước/sau · <kbd>Space</kbd> hiện/che tất cả · <kbd>R</kbd> cách đọc · <kbd>I</kbd> ảnh ·
+        <kbd>1</kbd> chưa thuộc · <kbd>2</kbd> đã thuộc · <kbd>S</kbd> gắn sao · <kbd>U</kbd> tải ảnh · <kbd>F</kbd> tìm ảnh (tab mới) · <kbd>Ctrl</kbd>+<kbd>V</kbd> dán ảnh</div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 02 DANH SÁCH ================= -->
+<section id="tab-list" class="hide">
+  <div class="card">
+    <div class="row fbar">
+      <input id="q" class="grow" type="search" placeholder="Tìm 用語 / よみ / nghĩa VN / English / メモ…" aria-label="Tìm từ">
+      <select id="fField" aria-label="Lọc theo 分野"><option value="">分野: tất cả</option></select>
+      <select id="fPart" aria-label="Lọc theo 部位"><option value="">部位: tất cả</option></select>
+      <select id="fRow" aria-label="Lọc theo 50音"><option value="">50音: tất cả</option></select>
+      <select id="fImg" aria-label="Lọc theo ảnh"><option value="">Ảnh: tất cả</option><option value="has">Đã có ảnh</option><option value="none">Chưa có ảnh</option></select>
+      <select id="fLearn" aria-label="Lọc theo tiến độ"><option value="">Tiến độ: tất cả</option><option value="new">Chưa học</option><option value="weak">Chưa thuộc</option><option value="known">Đã thuộc</option></select>
+      <select id="fSort" aria-label="Sắp xếp"><option value="no">Sắp: No.</option><option value="yomi">Sắp: 50音</option><option value="rand">Sắp: ngẫu nhiên</option></select>
+      <button class="btn" id="btnStar" aria-pressed="false">☆ Chỉ từ gắn sao</button>
+      <button class="btn ghost" id="btnClear">Xoá lọc</button>
+    </div>
+    <div class="row" style="margin-top:12px">
+      <span class="sm muted">Bộ lọc dùng chung với tab <b>Học</b> và <b>Ôn tập</b>: lọc ở tab nào thì các tab kia đều đổi theo.</span>
+      <span class="grow"></span>
+      <span class="sm" id="stats"></span>
+      <button class="btn" id="btnDel" disabled title="Tick ô đầu dòng để chọn nhiều từ"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h16"/><path d="M10 11v6M14 11v6"/><path d="M6 7l1 13h10l1-13"/><path d="M9 7V4h6v3"/></svg> Xoá đã chọn</button>
+      <button class="btn pri" id="btnAdd">＋ Thêm từ mới</button>
+    </div>
+  </div>
+  <div class="card hide" id="addCard">
+    <div class="row"><span class="lab">＋ Từ vựng mới</span><span class="sm muted">Lưu vào danh sách của tool (không ghi ngược Notion) · nhấn <kbd>Enter</kbd> để lưu nhanh</span></div>
+    <div class="row" style="margin-top:12px">
+      <label class="f grow">用語 (JP) *<input id="nJp" placeholder="陸屋根"></label>
+      <label class="f">よみ<input id="nYomi" placeholder="ろくやね"></label>
+      <label class="f grow">Nghĩa (VN)<input id="nVn" placeholder="Mái bằng"></label>
+      <label class="f">50音<input id="nRow" placeholder="tự điền" title="Để trống = tự điền theo よみ" style="width:96px"></label>
+    </div>
+    <div class="row" style="margin-top:12px">
+      <label class="f grow">意味（JP）<input id="nMjp"></label>
+      <label class="f grow">English / BIM<input id="nEn"></label>
+      <label class="f">分野<input id="nField" list="dlField" placeholder="構造,施工" style="width:150px"></label>
+      <label class="f">部位<input id="nPart" list="dlPart" placeholder="屋根" style="width:130px"></label>
+      <datalist id="dlField"></datalist><datalist id="dlPart"></datalist>
+    </div>
+    <div class="row" style="margin-top:12px">
+      <label class="f grow">メモ（現場・図面）<input id="nMemo"></label>
+      <label class="f">Ảnh (tối đa 4)<input type="file" id="nFile" accept="image/*" multiple></label>
+      <label class="tg" style="align-self:end"><input type="checkbox" id="nStar" checked> Gắn sao</label>
+      <button class="btn pri" id="nSave" style="align-self:end">Lưu từ mới</button>
+      <button class="btn" id="nCancel" style="align-self:end">Huỷ</button>
+    </div>
+  </div>
+  <div class="card tblwrap">
+    <table id="tbl">
+      <thead><tr>
+        <th style="width:40px"><label class="ckl"><input type="checkbox" id="chkAll" aria-label="Chọn tất cả"><span class="ckt">Chọn tất cả</span></label></th>
+        <th style="width:44px">★</th>
+        <th style="width:84px">Ảnh</th><th style="width:64px">No.</th><th>用語 / よみ</th>
+        <th>Nghĩa (VN)</th><th style="width:170px">分野 / 部位</th><th style="width:110px">Trạng thái</th><th style="width:264px"></th>
+      </tr></thead>
+      <tbody id="tbody"></tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ================= 03 TRA TỪ ================= -->
+<section id="tab-lookup" class="hide">
+  <div class="card">
+    <div class="row">
+      <input id="lkq" class="grow" placeholder="Nhập từ cần tra: 例) 陸屋根, パラペット, hoặc từ chưa có trong DB…" list="terms" aria-label="Từ cần tra">
+      <datalist id="terms"></datalist>
+      <button class="btn pri" id="lkGo"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="M20 20l-4.2-4.2"/></svg> Tra từ</button>
+      <button class="btn" id="lkImg" title="Mở trang tìm hình ảnh với từ này ở tab mới"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 4h6v6"/><path d="M20 4l-9 9"/><path d="M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg> Tìm ảnh (tab mới)</button>
+    </div>
+  </div>
+  <div class="split">
+    <div class="card" id="lkInfo"><div class="empty">Kết quả tra (dữ liệu DB + giải thích AI nếu có Gemini key) sẽ hiện ở đây.</div></div>
+    <div class="card">
+      <div class="row" style="margin-bottom:12px"><span class="lab">Ảnh của từ</span><span class="grow"></span>
+        <button class="btn sm" id="lkAdd">↑ Ảnh của tôi</button>
+        <button class="btn sm" id="lkLearn" disabled>Mở trong tab Học →</button></div>
+      <div id="lkSlots"><div class="muted sm">—</div></div>
+      <div class="drop" id="lkDrop" style="margin-top:12px">Bấm <b>Tìm ảnh (tab mới)</b> → chuột phải ảnh › <i>Sao chép hình ảnh</i> → quay lại bấm <kbd>Ctrl</kbd>+<kbd>V</kbd> · hoặc kéo–thả ảnh vào khung này</div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 04 ÔN TẬP ================= -->
+<section id="tab-study" class="hide">
+  <div class="card">
+    <div class="row fbar">
+      <input id="stq" class="grow" type="search" placeholder="Tìm 用語 / よみ / nghĩa VN / English / メモ…" aria-label="Tìm từ">
+      <select id="stField" aria-label="Lọc theo 分野"><option value="">分野: tất cả</option></select>
+      <select id="stPart" aria-label="Lọc theo 部位"><option value="">部位: tất cả</option></select>
+      <select id="stRow" aria-label="Lọc theo 50音"><option value="">50音: tất cả</option></select>
+      <select id="stImg" aria-label="Lọc theo ảnh"><option value="">Ảnh: tất cả</option><option value="has">Đã có ảnh</option><option value="none">Chưa có ảnh</option></select>
+      <select id="stLearn" aria-label="Lọc theo tiến độ"><option value="">Tiến độ: tất cả</option><option value="new">Chưa học</option><option value="weak">Chưa thuộc</option><option value="known">Đã thuộc</option></select>
+      <button class="btn" id="stStar" aria-pressed="false">☆ Chỉ từ gắn sao</button>
+      <button class="btn ghost" id="stClear">Xoá lọc</button>
+    </div>
+    <div class="row" style="margin-top:12px">
+      <select id="stSrc" aria-label="Bộ thẻ"><option value="all">Bộ: các từ khớp bộ lọc</option></select>
+      <select id="stMode" aria-label="Kiểu thẻ">
+        <option value="t2m">用語 + ảnh → cách đọc, nghĩa</option>
+        <option value="i2t">Ảnh → 用語</option>
+        <option value="v2t">Nghĩa VN → 用語</option>
+      </select>
+      <label class="tg"><input type="checkbox" id="stShuffle" checked> Trộn thẻ</label>
+      <label class="tg"><input type="checkbox" id="stOnlyWeak"> Chỉ thẻ chưa thuộc</label>
+      <button class="btn pri" id="stStart"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 12a8 8 0 1 1-2.6-5.9"/><path d="M20 4v5h-5"/></svg> Bắt đầu lại</button>
+      <span class="grow"></span><span class="sm" id="stStat"></span>
+    </div>
+    <div class="sm muted" style="margin-top:12px">Bộ lọc dùng chung với tab <b>Học</b> và <b>Danh sách</b> – đổi bộ lọc thì bộ thẻ làm lại từ thẻ đầu.</div>
+  </div>
+  <div class="flash" id="flash"><div class="muted">Đang chuẩn bị bộ thẻ…</div></div>
+  <div class="card row" id="stCtl">
+    <button class="btn" id="stPrev" aria-label="Thẻ trước" title="Thẻ trước (←)">←</button>
+    <button class="btn" id="stShow">Lật thẻ <kbd>Space</kbd></button>
+    <button class="btn" id="stNo">× Chưa thuộc <kbd>1</kbd></button>
+    <button class="btn ok" id="stYes">✓ Đã thuộc <kbd>2</kbd></button>
+    <button class="btn" id="stNext" aria-label="Thẻ sau" title="Thẻ sau (→)">→</button>
+    <span class="grow"></span><span class="sm mono" id="stPos"></span>
+  </div>
+</section>
+
+<!-- ================= 05 LƯU / XUẤT ================= -->
+<section id="tab-save" class="hide">
+  <div class="split">
+    <div class="card">
+      <span class="lab">Lưu danh sách ôn tập</span>
+      <div class="row" style="margin-top:12px">
+        <input id="colName" class="grow" placeholder="Tên bộ, vd: 屋根まわり 20語" aria-label="Tên bộ">
+        <button class="btn pri" id="colSave">Lưu bộ</button>
+      </div>
+      <div class="sm muted" style="margin-top:8px">Lưu các từ đang tick ở tab Danh sách; không tick từ nào thì lưu toàn bộ kết quả của bộ lọc hiện tại.</div>
+      <div id="colList" style="margin-top:12px"></div>
+    </div>
+    <div class="card">
+      <span class="lab">Xuất / Nhập dữ liệu</span>
+      <div class="row" style="margin-top:12px">
+        <button class="btn" id="exJson">⬇ JSON (toàn bộ)</button>
+        <button class="btn" id="exCsv">⬇ CSV cho Notion (URL ảnh 1–4)</button>
+        <button class="btn" id="exImgs">⬇ Tải ảnh cục bộ (.jpg)</button>
+        <button class="btn" id="imBtn">⬆ Nhập JSON</button>
+        <input type="file" id="imFile" accept="application/json" class="hide">
+        <button class="btn" id="wipe">Xoá dữ liệu cục bộ</button>
+      </div>
+      <div class="sm muted" style="margin-top:12px">Ảnh tải lên được nén ≤1024px và lưu trong IndexedDB của trình duyệt này; danh sách từ, sao và tiến độ lưu trong localStorage. Xuất <b>JSON (toàn bộ)</b> để backup kèm ảnh.</div>
+      <div id="usage" class="sm" style="margin-top:8px"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 06 CÀI ĐẶT ================= -->
+<section id="tab-set" class="hide">
+  <details class="card" open>
+    <summary>Hướng dẫn nhanh (6 mục)</summary>
+    <ol class="sm" style="line-height:1.85;margin:12px 0 0 20px;padding:0">
+      <li><b>Học:</b> tab <b>01 Học</b> → chọn từ ở danh mục bên trái (lọc 分野 / 部位 / 50音 / ảnh / tiến độ / ★). Ô <b>A</b>: 用語 + nghĩa EN / VN; cách đọc của từ có Hán tự bị che → bấm hoặc phím <kbd>R</kbd>. Ô <b>B</b>: 2–4 ảnh bị che → bấm từng ảnh hoặc <kbd>I</kbd>. Chấm <kbd>1</kbd> chưa thuộc / <kbd>2</kbd> đã thuộc → tự sang từ tiếp theo.</li>
+      <li><b>Ảnh của bạn:</b> <b>↑ Tải ảnh lên</b> (<kbd>U</kbd>), kéo–thả vào từng ô, hoặc <kbd>Ctrl</kbd>+<kbd>V</kbd> dán ảnh / URL. <b>−/＋</b> đổi số vị trí (2–4); nút <b>thay</b> / <b>xoá</b> nằm ở góc dưới mỗi ảnh. Ảnh được nén ≤1024px, lưu offline trong trình duyệt.</li>
+      <li><b>Nạp đủ 2050 từ:</b> mở DB <i>建築用語</i> trên Notion → <i>••• → Export → Markdown &amp; CSV</i> → bấm <b>Nhập CSV/JSON</b> ở dưới. Bản 2.0 đọc thêm cột <i>メモ（現場・図面）</i> nên hãy nạp lại CSV 1 lần. Tự <b>thêm / xoá từ</b> ở tab <b>Danh sách</b>: <b>＋ Thêm từ mới</b>; nút thùng rác ở mỗi dòng, hoặc tick nhiều dòng → <b>Xoá đã chọn</b>.</li>
+      <li><b>Tìm ảnh:</b> nút <b>Tìm ảnh</b> (phím <kbd>F</kbd>) mở <b>Google Hình ảnh</b> ở tab mới với từ đang học → chuột phải ảnh › <i>Sao chép hình ảnh</i> → quay lại tool bấm <kbd>Ctrl</kbd>+<kbd>V</kbd> (hoặc kéo–thả ảnh sang). Đổi trang tìm / thêm từ khoá ở mục <i>Tìm ảnh</i> bên dưới.</li>
+      <li><b>Trên điện thoại / iPad:</b> chạm vào từ trong danh mục để mở thẻ (danh mục nằm dưới thẻ) · Tìm ảnh → <i>nhấn giữ ảnh › Lưu ảnh</i> → quay lại bấm <b>↑ Tải ảnh lên</b> (chọn ảnh trong máy hoặc chụp ảnh) · bảng <b>Danh sách</b> tự đổi sang dạng thẻ, không phải kéo ngang.</li>
+      <li><b>Bộ lọc dùng chung:</b> lọc ở tab <b>Học</b>, <b>Danh sách</b> hay <b>Ôn tập</b> đều áp dụng cho cả ba (danh mục, bảng, bộ thẻ) và cho nút ← / →.</li>
+      <li><b>Ôn tập &amp; đưa về Notion:</b> tab <b>04</b> flashcard theo bộ lọc (hoặc bộ đã lưu): mặt trước 用語 + ảnh, mặt sau cách đọc · nghĩa · giải thích (<kbd>Space</kbd> hoặc bấm thẻ để lật, <kbd>1</kbd>/<kbd>2</kbd> chấm, <kbd>←</kbd>/<kbd>→</kbd> chuyển thẻ). Tab <b>05</b>: CSV (URL ảnh 1–4), tải ảnh cục bộ (tên <code>No._用語_vị trí.jpg</code>), JSON backup đầy đủ.</li>
+    </ol>
+  </details>
+  <div class="card">
+    <span class="lab">Tab Học</span>
+    <div class="row" style="margin-top:12px">
+      <label class="f">Số vị trí ảnh mặc định / từ
+        <select id="sSlots"><option value="2">2 ảnh</option><option value="3">3 ảnh</option><option value="4">4 ảnh</option></select></label>
+      <span class="sm muted grow" style="align-self:end;padding-bottom:10px">Từng từ vẫn chỉnh riêng được bằng nút −/＋ ở ô ảnh. Che cách đọc / che ảnh bật–tắt ngay trên thanh công cụ của tab Học.</span>
+    </div>
+  </div>
+  <div class="card">
+    <span class="lab">Tìm ảnh</span>
+    <div class="row" style="margin-top:12px">
+      <label class="f">Trang tìm hình ảnh
+        <select id="sEngine"><option value="google">Google Hình ảnh</option><option value="bing">Bing Hình ảnh</option><option value="yahoo">Yahoo! JAPAN 画像</option></select></label>
+      <label class="f grow">Thêm vào từ khoá (tuỳ chọn)<input id="sSuffix" placeholder="để trống = chỉ tìm đúng 用語 · vd: 建築 / 施工 / 納まり"></label>
+      <button class="btn" id="sTryEng" style="align-self:end"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 4h6v6"/><path d="M20 4l-9 9"/><path d="M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg> Thử với 「柱」</button>
+    </div>
+    <div class="sm muted" id="sEngHint" style="margin-top:12px"></div>
+  </div>
+  <div class="card">
+    <span class="lab">AI (tuỳ chọn)</span>
+    <div class="row" style="margin-top:12px">
+      <label class="f grow">Gemini API key – dùng cho “Giải thích AI” &amp; tab Tra từ<input id="sGem" type="password" placeholder="AIza…" autocomplete="off"></label>
+      <label class="f">Model text<input id="sModel" list="mdList" value="gemini-3.6-flash" style="width:210px"><datalist id="mdList"><option value="gemini-3.6-flash"><option value="gemini-3.8-flash"></datalist></label>
+      <button class="btn" id="sModels" style="align-self:end">Danh sách model</button>
+      <button class="btn" id="sTest" style="align-self:end">Kiểm tra kết nối</button>
+    </div>
+    <div class="sm muted" style="margin-top:12px">Key chỉ lưu trong trình duyệt của bạn (tool chạy hoàn toàn client-side). Không có key thì mọi chức năng khác vẫn dùng bình thường.</div>
+  </div>
+  <div class="card">
+    <span class="lab">Nạp dữ liệu từ vựng</span>
+    <div class="row" style="margin-top:12px">
+      <button class="btn pri" id="dImport">⬆ Nhập CSV/JSON xuất từ Notion</button>
+      <input type="file" id="dFile" accept=".csv,.json" class="hide">
+      <button class="btn" id="dReset">Về bộ 100 từ mẫu</button>
+      <span class="sm muted grow">Đang có <b id="cnt">0</b> từ. Cột được nhận: No. · 用語 · よみ · 意味（JP） · Nghĩa (VN) · English / BIM · 分野 · 部位 · 50音 · メモ（現場・図面）.</span>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<div class="lb hide" id="lb" role="dialog" aria-modal="true" aria-label="Xem ảnh lớn">
+  <button class="btn lbx" id="lbX" aria-label="Đóng (Esc)"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+  <button class="btn lbn lbp" id="lbPrev" aria-label="Ảnh trước">‹</button>
+  <img id="lbImg" alt="">
+  <button class="btn lbn lbq" id="lbNext" aria-label="Ảnh sau">›</button>
+  <div class="cap" id="lbCap"></div>
+</div>
+<input type="file" id="slotFile" accept="image/*" multiple class="hide">
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script>
+/* ============ 1. Dữ liệu từ vựng (100 từ mẫu – đối chiếu DB 建築用語) ============ */
+/* [No, 用語, よみ, 意味(JP), Nghĩa(VN), English/BIM, 分野, 部位, 50音, メモ（現場・図面）] */
+const RAW=[
+[1, "柱", "はしら", "建物の鉛直荷重を下に伝える垂直部材。", "Cột – cấu kiện đứng truyền tải trọng xuống móng.", "Column / Revit: Structural Column", "構造", "躯体", "は行", "Revitでは意匠柱と構造柱が別カテゴリ。"],
+[2, "梁", "はり", "柱の間に水平に架け、床や屋根の荷重を支える部材。", "Dầm – cấu kiện ngang đỡ sàn, mái.", "Beam / Revit: Structural Framing", "構造", "躯体", "は行", "大梁（ガーダー）と小梁（ビーム）を区別。"],
+[3, "基礎", "きそ", "建物の荷重を地盤に伝える下部構造。", "Móng – kết cấu truyền tải trọng xuống nền đất.", "Foundation", "構造", "基礎", "か行", "独立基礎・布基礎・ベタ基礎など。"],
+[4, "杭", "くい", "軟弱地盤で建物を支持層まで支える細長い部材。", "Cọc – truyền tải xuống lớp đất chịu lực.", "Pile / Revit: Structural Foundation", "構造", "基礎", "か行", "既製杭と場所打ち杭がある。"],
+[5, "スラブ", "すらぶ", "床や屋根を構成する鉄筋コンクリートの板。", "Bản sàn bê tông cốt thép.", "Slab / Revit: Floor", "構造", "床", "さ行", "図面では厚さを t=150 のように表記。"],
+[6, "耐力壁", "たいりょくへき", "地震や風などの水平力に抵抗する壁。", "Vách chịu lực – chịu tải ngang (động đất, gió).", "Shear wall / Bearing wall", "構造", "躯体", "た行", "非耐力壁（間仕切壁）と区別する。"],
+[7, "鉄筋コンクリート造", "てっきんこんくりーとぞう", "鉄筋とコンクリートを一体化させた構造（RC造）。", "Kết cấu bê tông cốt thép (RC).", "RC (Reinforced Concrete)", "構造", "躯体", "た行", "他にS造（鉄骨）、SRC造。"],
+[8, "通り芯", "とおりしん", "平面・構造の基準となる中心線。", "Lưới trục – đường tim chuẩn của mặt bằng.", "Grid / Revit: Grid", "構造,CAD・BIM", "図面", "た行", "X1・Y1… Revitのグリッドと同じ概念。"],
+[9, "階高", "かいだか", "ある階の床面から上の階の床面までの高さ。", "Chiều cao tầng (sàn đến sàn).", "Floor height (FH) / Revit: Level", "構造,意匠・内装", "躯体", "か行", "天井高（CH）と混同しない。"],
+[10, "配筋", "はいきん", "設計どおりに鉄筋を組み立てること・その配置。", "Bố trí / đan cốt thép.", "Rebar arrangement / Revit: Rebar", "施工,構造", "躯体", "は行", "打設前に配筋検査が入る。"],
+[11, "型枠", "かたわく", "コンクリートを所定の形に打つための仮設の枠。", "Ván khuôn (cốp pha).", "Formwork", "施工", "躯体", "か行", "型枠→配筋→打設→脱型の順。"],
+[12, "打設", "だせつ", "生コンクリートを型枠に流し込む作業。", "Đổ bê tông.", "Concrete placing / pouring", "施工", "躯体", "た行", "打継ぎ（うちつぎ）位置は図面指定。"],
+[13, "墨出し", "すみだし", "図面の位置や高さを現場に印す作業。", "Bật mực định vị trên hiện trường.", "Layout marking / setting out", "施工", "図面", "さ行", "通り芯と陸墨（水平基準）が基本。"],
+[14, "養生", "ようじょう", "硬化中の保護、または仕上げ面を傷から守ること。", "Bảo dưỡng bê tông / che chắn bảo vệ.", "Curing / protection", "施工", "躯体,内装", "や行", "文脈で「bảo dưỡng」か「che chắn」か変わる。"],
+[15, "足場", "あしば", "高所作業のために組む仮設の作業床。", "Giàn giáo.", "Scaffolding", "施工", "外壁", "あ行", "仮設（かせつ）計画図に記載。"],
+[16, "巾木", "はばき", "壁と床の取合い部に付ける見切り・保護材。", "Len chân tường.", "Baseboard / Revit: Wall Sweep", "意匠・内装", "内装,床", "は行", "H=60 など高さで表記される。"],
+[17, "廻り縁", "まわりぶち", "壁と天井の取合いに付ける見切り材。", "Phào (nẹp) cổ trần.", "Ceiling trim / crown molding", "意匠・内装", "内装,天井", "ま行", "巾木とセットで覚える。"],
+[18, "下地", "したじ", "仕上げ材を取り付けるための骨組みや下層の面。", "Lớp nền / khung xương đỡ lớp hoàn thiện.", "Substrate / framing", "意匠・内装,施工", "内装", "さ行", "LGS下地、木下地など。"],
+[19, "仕上げ", "しあげ", "最終的に見える表面の材料・工事。", "Lớp hoàn thiện.", "Finish", "意匠・内装", "内装,外壁", "さ行", "仕上表（しあげひょう）＝bảng hoàn thiện。"],
+[20, "建具", "たてぐ", "ドアや窓など、開口部に取り付ける部材。", "Cửa đi / cửa sổ (bộ cửa).", "Door & window / Revit: Doors, Windows", "意匠・内装", "開口部", "た行", "建具表＝bảng thống kê cửa。"],
+[21, "内法", "うちのり", "部材の内側から内側までの寸法。", "Kích thước lọt lòng (thông thủy).", "Clear / inside dimension", "意匠・内装,CAD・BIM", "図面", "あ行", "対語は外法（そとのり）。"],
+[22, "目地", "めじ", "タイルやボードなどの継ぎ目。", "Mạch / khe nối vật liệu.", "Joint", "意匠・内装", "内装,外壁", "ま行", "目地割り＝chia mạch、見た目に直結。"],
+[23, "天井高", "てんじょうだか", "床仕上げ面から天井仕上げ面までの高さ（CH）。", "Chiều cao trần (CH).", "Ceiling height (CH)", "意匠・内装", "天井", "た行", "階高（FH）とセットで確認。"],
+[24, "分電盤", "ぶんでんばん", "電気を各回路に分配・保護する盤。", "Tủ điện phân phối.", "Distribution board / Revit: Electrical Equipment", "設備・電気", "設備", "は行", "EPS（電気シャフト）内に設置されることが多い。"],
+[25, "空調", "くうちょう", "温度・湿度・空気質を調整する設備。", "Điều hòa không khí (HVAC).", "HVAC / air conditioning", "設備・電気", "設備", "か行", "室内機・室外機の収まりを天井内で検討。"],
+[26, "換気", "かんき", "室内の空気を外気と入れ替えること。", "Thông gió.", "Ventilation", "設備・電気", "設備", "か行", "給気SA・排気EAの記号で図示。"],
+[27, "給排水", "きゅうはいすい", "給水と排水に関する設備。", "Cấp thoát nước.", "Plumbing (supply & drainage)", "設備・電気", "設備", "か行", "衛生設備図に記載。勾配確保が重要。"],
+[28, "照明器具", "しょうめいきぐ", "室内外を照らす電気器具。", "Thiết bị chiếu sáng.", "Lighting fixture / Revit: Lighting Fixtures", "設備・電気", "設備,天井", "さ行", "天井伏図（てんじょうふせず）で配置確認。"],
+[29, "平面図", "へいめんず", "建物を水平に切断し、上から見た図。", "Mặt bằng.", "Floor plan", "CAD・BIM", "図面", "は行", "FL+1000程度で切った水平断面。"],
+[30, "断面図", "だんめんず", "建物を垂直に切断して見た図。", "Mặt cắt.", "Section / Revit: Section view", "CAD・BIM", "図面", "た行", "高さ関係を確認する図。"],
+[31, "立面図", "りつめんず", "建物を外部から水平方向に見た図。", "Mặt đứng.", "Elevation", "CAD・BIM", "図面", "ら行", "東西南北の4面が基本。"],
+[32, "矩計図", "かなばかりず", "各部の高さや納まりを詳しく示した断面詳細図。", "Mặt cắt chi tiết cấu tạo theo phương đứng.", "Detailed section", "CAD・BIM,意匠・内装", "図面", "か行", "日本特有の図。納まり理解に最重要。"],
+[33, "納まり", "おさまり", "部材どうしの取合いや仕上げの収め方。", "Chi tiết liên kết / cách xử lý giao tuyến vật liệu.", "Detail / junction", "意匠・内装,施工", "図面", "あ行", "「納まりが悪い」＝khó thi công / không đẹp。"],
+[34, "縮尺", "しゅくしゃく", "実際の寸法に対する図面上の比率。", "Tỉ lệ bản vẽ.", "Scale", "CAD・BIM", "図面", "さ行", "S=1/100、1/50 などと表記。"],
+[35, "数量拾い", "すうりょうひろい", "図面から材料や工事の数量を算出すること。", "Bóc tách khối lượng.", "Quantity take-off", "積算", "図面", "さ行", "BIMの集計表（Schedule）で自動化できる領域。"],
+[36, "歩掛", "ぶがかり", "単位数量あたりに必要な手間や材料の標準量。", "Định mức (hao phí nhân công, vật tư).", "Labor / material coefficient", "積算", "", "は行", "見積単価の根拠になる。"],
+[37, "延床面積", "のべゆかめんせき", "各階の床面積を合計した面積。", "Tổng diện tích sàn.", "Total floor area", "積算,法規・不動産", "図面", "な行", "容積率の計算に使う。"],
+[38, "建蔽率", "けんぺいりつ", "敷地面積に対する建築面積の割合。", "Mật độ xây dựng.", "Building coverage ratio", "法規・不動産", "", "か行", "用途地域ごとに上限が決まる。"],
+[39, "容積率", "ようせきりつ", "敷地面積に対する延床面積の割合。", "Hệ số sử dụng đất.", "Floor area ratio (FAR)", "法規・不動産", "", "や行", "建蔽率とセットで覚える。"],
+[40, "確認申請", "かくにんしんせい", "着工前に法適合の審査を受ける手続き。", "Thủ tục xin thẩm định / cấp phép xây dựng.", "Building confirmation application", "法規・不動産", "", "か行", "確認済証が下りないと着工できない。"],
+[41, "棟", "むね", "屋根面どうしが最上部で交わる部分。", "Đỉnh mái (nóc mái).", "Ridge", "意匠・内装,施工", "屋根", "ま行", "棟上げ（むねあげ）＝lễ cất nóc。"],
+[42, "軒", "のき", "外壁より外側に張り出した屋根の部分。", "Mái đua – phần mái nhô ra khỏi tường.", "Eaves", "意匠・内装", "屋根", "な行", "軒の出（のきので）＝độ vươn mái。"],
+[43, "破風", "はふ", "切妻屋根などで妻側にある屋根端部の部材。", "Diềm đầu hồi mái.", "Bargeboard / gable end", "意匠・内装", "屋根", "は行", "鼻隠しとの違い：妻側か軒先か。"],
+[44, "鼻隠し", "はなかくし", "軒先で垂木の木口を隠すように取り付ける板。", "Ván che đầu kèo ở diềm mái.", "Fascia board", "意匠・内装", "屋根", "は行", "雨樋は鼻隠しに取り付くことが多い。"],
+[45, "雨樋", "あまどい", "屋根の雨水を集めて排水する部材。", "Máng xối / ống thoát nước mưa.", "Gutter / downspout", "意匠・内装,設備・電気", "屋根,外壁", "あ行", "軒樋（水平）と竪樋（垂直）がある。"],
+[46, "パラペット", "ぱらぺっと", "屋上やバルコニー外周の立ち上がり壁。", "Tường chắn mái (lan can đặc).", "Parapet", "意匠・内装,構造", "屋根,外壁", "は行", "笠木（かさぎ）と防水の納まりが重要。"],
+[47, "陸屋根", "ろくやね", "勾配がほとんどない平らな屋根。", "Mái bằng.", "Flat roof", "意匠・内装,構造", "屋根", "ら行", "排水勾配 1/100 程度は取る。"],
+[48, "防水", "ぼうすい", "水の浸入を防ぐための工事・層。", "Chống thấm.", "Waterproofing", "施工,意匠・内装", "屋根,外壁", "は行", "アスファルト・シート・塗膜など工法別あり。"],
+[49, "水切り", "みずきり", "雨水を外側に導き、内部への浸入を防ぐ部材。", "Gờ / nẹp hắt nước.", "Drip / flashing", "意匠・内装,施工", "外壁", "ま行", "矩計図でよく出てくる納まり。"],
+[50, "サイディング", "さいでぃんぐ", "外壁に張って仕上げる板状の外装材。", "Tấm ốp mặt ngoài.", "Siding", "意匠・内装", "外壁", "さ行", "窓周りの目地・シーリングとセット。"],
+[51, "ALCパネル", "えーえるしーぱねる", "軽量気泡コンクリートを板状に成形した建材。", "Tấm bê tông khí chưng áp (ALC).", "ALC panel", "意匠・内装,施工", "外壁", "英字", "軽いがそのままでは防水性なし、塗装が必要。"],
+[52, "シーリング", "しーりんぐ", "目地や建具周りを充填し、水密・気密を確保する材料・作業。", "Keo trám khe (sealant / silicone).", "Sealing / caulking", "施工,意匠・内装", "外壁,開口部", "さ行", "劣化しやすく改修の主要項目。"],
+[53, "カーテンウォール", "かーてんうおーる", "構造荷重を負担しない外周の壁。主にガラスと金属。", "Tường kính bao che (curtain wall).", "Curtain wall / Revit: Curtain Wall", "意匠・内装,構造", "外壁", "か行", "Revit のカーテンウォールと同じ概念。"],
+[54, "石膏ボード", "せっこうぼーど", "石膏を芯材とし、両面を原紙で覆った板状建材。", "Tấm thạch cao.", "Gypsum board (GB)", "意匠・内装,施工", "内装,天井", "さ行", "図面では PB・GB t=12.5 などと表記。"],
+[55, "クロス", "くろす", "壁や天井の仕上げに使う壁紙。", "Giấy dán tường.", "Wallpaper", "意匠・内装", "内装,天井", "か行", "仕上表で「EP塗装」か「クロス」かを確認。"],
+[56, "軽量鉄骨下地", "けいりょうてっこつしたじ", "薄い鋼材で組む壁・天井の下地（LGS）。", "Khung xương thép nhẹ (LGS).", "Light gauge steel framing (LGS)", "意匠・内装,施工", "内装,天井", "か行", "スタッド間隔＠303・455 など。"],
+[57, "間仕切壁", "まじきりかべ", "室内を区切る、構造荷重を負担しない壁。", "Vách ngăn (không chịu lực).", "Partition wall", "意匠・内装", "内装", "ま行", "耐力壁との区別が図面読みの基本。"],
+[58, "見切り", "みきり", "異なる仕上げの境目を納める部材。", "Nẹp phân cách vật liệu.", "Trim / transition strip", "意匠・内装", "内装,床", "ま行", "巾木・廻り縁も見切りの一種。"],
+[59, "天井伏図", "てんじょうふせず", "天井面を見上げた状態で表した図。", "Bản vẽ trần (nhìn từ dưới lên).", "Reflected ceiling plan (RCP)", "CAD・BIM,意匠・内装", "天井,図面", "た行", "照明・空調吹出・点検口の配置を示す。"],
+[60, "展開図", "てんかいず", "室内の各壁面を正面から見た図。", "Bản vẽ khai triển tường nội thất.", "Interior elevation", "CAD・BIM,意匠・内装", "内装,図面", "た行", "内装の高さ・割付け確認に使う。"],
+[61, "サッシ", "さっし", "主にアルミ製の窓枠・開口部枠。", "Khung cửa sổ (thường bằng nhôm).", "Sash / window frame", "意匠・内装", "開口部", "さ行", "建具表で AW（アルミ窓）などの記号。"],
+[62, "方立", "ほうだて", "サッシやカーテンウォールの縦方向の部材。", "Đố đứng (mullion).", "Mullion / Revit: Curtain Wall Mullion", "意匠・内装,CAD・BIM", "開口部,外壁", "は行", "横材は無目（むめ）。"],
+[63, "無目", "むめ", "建具やサッシの横方向の枠材。", "Đố ngang (transom).", "Transom", "意匠・内装", "開口部", "ま行", "方立（縦）とセットで覚える。"],
+[64, "沓摺り", "くつずり", "ドア下部に取り付ける枠材。", "Ngưỡng cửa.", "Threshold / door sill", "意匠・内装", "開口部,床", "か行", "バリアフリーでは段差を抜く。"],
+[65, "有効開口", "ゆうこうかいこう", "建具を開けたときに実際に通れる寸法。", "Kích thước thông thủy của cửa.", "Clear opening width", "意匠・内装,法規・不動産", "開口部", "や行", "避難・バリアフリー規定で必要。"],
+[66, "鉄骨造", "てっこつぞう", "鋼材で骨組みを構成する構造（S造）。", "Kết cấu thép (S).", "Steel structure (S)", "構造", "躯体", "た行", "H形鋼・角パイプなどの断面記号を覚える。"],
+[67, "溶接", "ようせつ", "鋼材を熱で溶かして接合すること。", "Hàn.", "Welding", "構造,施工", "躯体", "や行", "工場溶接と現場溶接で品質管理が違う。"],
+[68, "高力ボルト", "こうりょくぼると", "鉄骨の接合に使う高強度のボルト。", "Bu lông cường độ cao.", "High-strength bolt", "構造,施工", "躯体", "か行", "締付けトルク管理が検査対象。"],
+[69, "アンカーボルト", "あんかーぼると", "基礎と柱脚・土台などを緊結するボルト。", "Bu lông neo.", "Anchor bolt", "構造,施工", "基礎,躯体", "あ行", "位置ずれは後工程に影響する。"],
+[70, "かぶり厚さ", "かぶりあつさ", "鉄筋表面からコンクリート表面までの厚さ。", "Lớp bê tông bảo vệ cốt thép.", "Concrete cover", "構造,施工", "躯体", "か行", "耐久性・耐火性に直結する検査項目。"],
+[71, "根切り", "ねぎり", "基礎や地下部をつくるために地面を掘ること。", "Đào đất móng.", "Excavation", "施工", "基礎", "な行", "根切り→地業→捨てコンクリートの順。"],
+[72, "山留め", "やまどめ", "掘削面の崩壊を防ぐ仮設構造。", "Chống vách hố đào (cừ, chống).", "Earth retaining / shoring", "施工", "基礎", "や行", "山留め壁・切梁（きりばり）とセット。"],
+[73, "躯体", "くたい", "建物の構造体そのもの。", "Phần thô / kết cấu chịu lực.", "Structural frame / shell", "構造,施工", "躯体", "か行", "躯体工事→仕上工事の順に進む。"],
+[74, "仮設", "かせつ", "工事中だけ設ける一時的な設備・構造。", "Công trình tạm / biện pháp thi công tạm.", "Temporary works", "施工", "外構", "か行", "足場・仮囲い・仮設事務所など。"],
+[75, "点検口", "てんけんこう", "天井裏やパイプスペースを点検するための開口。", "Cửa thăm (để kiểm tra thiết bị).", "Access panel / inspection hatch", "設備・電気,意匠・内装", "天井,設備", "た行", "天井伏図で位置を調整する。"],
+[76, "ダクト", "だくと", "空気を搬送する管路。", "Ống gió.", "Duct / Revit: Duct", "設備・電気", "設備,天井", "た行", "天井裏で梁・配管と干渉しやすい。"],
+[77, "スプリンクラー", "すぷりんくらー", "火災時に天井から自動的に散水する消火設備。", "Đầu phun chữa cháy sprinkler.", "Sprinkler head", "設備・電気,法規・不動産", "設備,天井", "さ行", "天井伏図で照明・吹出と割付け調整。"],
+[78, "消火設備", "しょうかせつび", "火災を消すための設備の総称。", "Hệ thống thiết bị chữa cháy.", "Fire protection system", "設備・電気,法規・不動産", "設備", "さ行", "消防法で用途・面積ごとに設置義務。"],
+[79, "防火区画", "ぼうかくかく", "火災の拡大を防ぐために耐火構造で区切った範囲。", "Khoang ngăn cháy.", "Fire compartment", "法規・不動産,意匠・内装", "内装,図面", "は行", "貫通部は防火ダンパー・防火埋戻が必要。"],
+[80, "斜線制限", "しゃせんせいげん", "道路や隣地からの斜線による建物の高さ制限。", "Giới hạn chiều cao theo đường xiên (từ đường, đất liền kề).", "Diagonal (setback) height restriction", "法規・不動産", "図面", "さ行", "天空率で緩和できる場合がある。"],
+[81, "土台", "どだい", "木造で基礎の上に水平に置き、柱を受ける横架材。", "Dầm đế: thanh gỗ nằm ngang trên móng, đỡ chân cột.", "Sill plate / Revit: Structural Framing", "構造,施工", "基礎,躯体", "た行", "アンカーボルトで基礎に緊結。防腐処理が必要。"],
+[82, "大引", "おおびき", "1階の床を支える横材で、根太を受ける。", "Dầm đỡ sàn tầng 1, gánh các đà ngang (根太).", "Floor girder / sleeper beam", "構造", "床,躯体", "あ行", "床束（ゆかづか）で下から支持する。"],
+[83, "根太", "ねだ", "床板を直接受ける細い横材。", "Đà ngang đỡ trực tiếp ván sàn.", "Joist / Revit: Structural Framing", "構造,施工", "床", "な行", "最近は根太レス（剛床）工法も多い。"],
+[84, "通し柱", "とおしばしら", "土台から軒まで階を通して1本で立てる柱。", "Cột thông tầng (chạy suốt từ dầm đế lên mái).", "Continuous (through) column", "構造", "躯体", "た行", "建物の四隅に配置するのが基本。"],
+[85, "管柱", "くだばしら", "各階ごとに分かれて立つ柱。", "Cột từng tầng (không thông tầng).", "Story post / non-continuous column", "構造", "躯体", "か行", "通し柱の対語。梁で階ごとに受ける。"],
+[86, "桁", "けた", "柱の上に横に渡し、垂木などを受ける横架材。", "Xà dọc đặt trên đầu cột, đỡ rui mái.", "Girder / wall plate", "構造", "躯体,屋根", "か行", "梁と直交方向に架かる材。軒桁・敷桁など。"],
+[87, "垂木", "たるき", "棟から軒へ流し、野地板を受ける屋根の部材。", "Rui (cầu phong) mái, đỡ ván lót mái.", "Rafter", "構造", "屋根", "た行", "@455程度のピッチで配置することが多い。"],
+[88, "母屋", "もや", "棟木と軒桁の間で垂木を支える水平材。", "Xà gồ đỡ rui mái.", "Purlin", "構造", "屋根", "ま行", "「おもや（母屋＝主屋）」と読み違えないよう注意。"],
+[89, "筋交い", "すじかい", "柱間に斜めに入れ、地震や風の水平力に抵抗する材。", "Thanh giằng chéo chống lực ngang (động đất, gió).", "Brace / Revit: Structural Brace", "構造", "躯体", "さ行", "壁量計算・耐力壁の要。切り欠き厳禁。"],
+[90, "継手", "つぎて", "部材を長さ方向につなぐ接合部。", "Mối nối kéo dài cấu kiện (theo chiều dài).", "Splice joint", "構造,施工", "躯体", "た行", "鉄筋の重ね継手、木材の腰掛け蟻継ぎなど。"],
+[91, "仕口", "しぐち", "角度をもって交わる部材どうしの接合部。", "Mối liên kết giữa hai cấu kiện giao nhau.", "Connection / framing joint", "構造,施工", "躯体", "さ行", "継手＝一直線、仕口＝交差、と覚える。"],
+[92, "在来工法", "ざいらいこうほう", "柱と梁で骨組みを作る日本の伝統的な木造工法。", "Kết cấu khung gỗ truyền thống Nhật (cột–dầm).", "Conventional post-and-beam wood framing", "構造,施工", "躯体", "さ行", "木造軸組工法ともいう。間取り変更に強い。"],
+[93, "枠組壁工法", "わくぐみかべこうほう", "規格材と面材で壁・床を構成する工法。通称ツーバイフォー。", "Kết cấu tường khung (2×4), chịu lực bằng mảng tường.", "Platform frame / 2×4 construction", "構造,施工", "躯体", "わ行", "面で支えるため耐震性が高いが開口制限あり。"],
+[94, "建方", "たてかた", "柱・梁などの骨組みを現場で組み上げる工事。", "Công tác dựng khung tại công trường.", "Erection / framing work", "施工", "躯体", "た行", "クレーン配置計画と天候に大きく左右される。"],
+[95, "上棟", "じょうとう", "棟木を取り付け、骨組みが完成する節目。", "Cất nóc — hoàn thành phần khung.", "Topping out / roof raising", "施工", "躯体,屋根", "さ行", "上棟式（棟上げ）を行うことがある。"],
+[96, "踏面", "ふみづら", "階段で足を乗せる水平面の奥行き寸法。", "Mặt bậc thang (chiều rộng bậc).", "Tread / Revit: Stair tread depth", "意匠・内装,法規・不動産", "階段", "は行", "用途ごとに建築基準法で最小寸法が決まる。"],
+[97, "蹴上げ", "けあげ", "階段一段分の高さ寸法。", "Chiều cao một bậc thang.", "Riser height / Revit: Riser", "意匠・内装,法規・不動産", "階段", "か行", "蹴上げ×2＋踏面＝600mm前後が歩きやすい目安。"],
+[98, "蹴込み", "けこみ", "段鼻の下で垂直面が奥に引っ込んだ部分。", "Phần lùi vào dưới mũi bậc thang.", "Riser setback / nosing recess", "意匠・内装", "階段", "か行", "蹴込み板の有無で見え方と安全性が変わる。"],
+[99, "踊り場", "おどりば", "階段の途中に設ける平らな床部分。", "Chiếu nghỉ cầu thang.", "Landing / Revit: Stair landing", "意匠・内装,法規・不動産", "階段", "あ行", "一定の高さごとに設置義務がある（用途による）。"],
+[100, "手摺", "てすり", "転落防止や昇降補助のために設ける横材・柵。", "Tay vịn / lan can.", "Handrail / railing / Revit: Railing", "意匠・内装,法規・不動産", "階段,開口部", "た行", "バルコニー等は高さ1,100mm以上が基本。"]
+];
+/* bản ≤1.3 có vài chữ bị sai trong bộ mẫu → sửa nếu còn lưu trong trình duyệt (chỉ khi khớp đúng giá trị cũ) */
+const FIX={"1": {"3": ["建物の鉄直荷重を下に伝える垂直部材。", "建物の鉛直荷重を下に伝える垂直部材。"]}, "4": {"1": ["杉", "杭"]}, "42": {"1": ["軍", "軒"]}, "44": {"3": ["軍先で垂木の木口を隠すように取り付ける板。", "軒先で垂木の木口を隠すように取り付ける板。"]}, "64": {"1": ["靴摑り", "沓摺り"]}, "80": {"4": ["Giới hạn chiều cao theo đường xiên.", "Giới hạn chiều cao theo đường xiên (từ đường, đất liền kề)."]}, "82": {"4": ["Dầm đỡ sàn tầng 1, gánh các đà ngang.", "Dầm đỡ sàn tầng 1, gánh các đà ngang (根太)."]}, "84": {"3": ["土台から軍まで階を通して1本で立てる柱。", "土台から軒まで階を通して1本で立てる柱。"]}, "87": {"3": ["棟から軍へ流し、野地板を受ける屋根の部材。", "棟から軒へ流し、野地板を受ける屋根の部材。"]}, "88": {"3": ["棟木と軍桁の間で垂木を支える水平材。", "棟木と軒桁の間で垂木を支える水平材。"]}, "89": {"3": ["柱間に斜めに入れ、水平力に抵抗する材。", "柱間に斜めに入れ、地震や風の水平力に抵抗する材。"], "4": ["Thanh giằng chéo chống lực ngang.", "Thanh giằng chéo chống lực ngang (động đất, gió)."]}, "93": {"4": ["Kết cấu tường khung (2×4).", "Kết cấu tường khung (2×4), chịu lực bằng mảng tường."], "5": ["Platform frame / 2x4 construction", "Platform frame / 2×4 construction"]}, "100": {"1": ["手摑", "手摺"]}};
+const splitL=v=>Array.isArray(v)?v.map(x=>String(x).trim()).filter(Boolean):String(v??"").split(/[,，、]/).map(x=>x.trim()).filter(Boolean);
+const RAWNO={};RAW.forEach(r=>RAWNO[r[0]]=r);
+function fixOld(A){
+  if(!Array.isArray(A))return A;
+  A.forEach(r=>{const f=Array.isArray(r)&&FIX[r[0]];if(!f)return;for(const k in f){if(String(r[k])===f[k][0])r[k]=f[k][1]}});
+  return A;
+}
+function fillMemo(T){T.forEach(t=>{if(!t.memo){const r=RAWNO[t.no];if(r&&r[1]===t.jp)t.memo=r[9]||""}});return T}
+function rawToTerms(A){return fillMemo(A.map((r,i)=>({id:"t"+(r[0]||i+1),no:r[0]||i+1,jp:String(r[1]||"").trim(),yomi:r[2]||"",mjp:r[3]||"",vn:r[4]||"",en:r[5]||"",
+  fields:splitL(r[6]),parts:splitL(r[7]),row:r[8]||"",memo:r[9]||""})).filter(t=>t.jp))}
+let SAVEDRAW=null;try{SAVEDRAW=fixOld(JSON.parse(localStorage.getItem("kvt.terms")))}catch(e){}
+let TERMS=rawToTerms(SAVEDRAW&&SAVEDRAW.length?SAVEDRAW:RAW);
+
+/* ============ 2. State / helpers ============ */
+const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
+const TOUCH=!!(window.matchMedia&&matchMedia("(pointer:coarse)").matches);   /* điện thoại / máy tính bảng: không có chuột, Ctrl+V */
+const LS={get:(k,d)=>{try{return JSON.parse(localStorage.getItem(k))??d}catch(e){return d}},
+          set:(k,v)=>{try{localStorage.setItem(k,JSON.stringify(v))}catch(e){toast("Không lưu được: bộ nhớ trình duyệt đầy")}}};
+const S={
+  set:LS.get("kvt.settings",{gem:"",model:"gemini-3.6-flash",slots:2,engine:"google",suffix:""}),
+  items:LS.get("kvt.items",{}),      // id -> {imgs:[ảnh|null ×2–4], nslot, approved (=ảnh đầu, tương thích bản cũ), ex}
+  cols:LS.get("kvt.cols",[]),
+  srs:LS.get("kvt.srs",{})           // id -> {ok, ng, known, at}
+};
+S.star=LS.get("kvt.star",{});
+S.learn=Object.assign({last:"",hideYomi:true,hideImg:true,sort:"no"},LS.get("kvt.learn",{}));
+/* ---- tự nâng model đã bị Google ngừng phục vụ ---- */
+const NEW_TEXT="gemini-3.6-flash";
+const DEAD=/^(gemini-(1\.5|2\.0|2\.5)|gemini-pro|text-bison)/;
+if(!S.set.model||DEAD.test(S.set.model)){S.set.model=NEW_TEXT;LS.set("kvt.settings",S.set)}
+const save=()=>{LS.set("kvt.settings",S.set);LS.set("kvt.items",S.items);LS.set("kvt.cols",S.cols);LS.set("kvt.srs",S.srs);LS.set("kvt.star",S.star);LS.set("kvt.learn",S.learn)};
+const saveLearn=()=>{LS.set("kvt.srs",S.srs);LS.set("kvt.star",S.star);LS.set("kvt.learn",S.learn)};
+const isTmp=t=>String(t&&t.id).startsWith("tmp_");
+function persistTerms(){try{localStorage.setItem("kvt.terms",JSON.stringify(TERMS.filter(x=>!isTmp(x)).map(x=>[x.no,x.jp,x.yomi,x.mjp,x.vn,x.en,x.fields.join(","),x.parts.join(","),x.row,x.memo||""])))}catch(e){toast("Không lưu được danh sách từ (bộ nhớ đầy)")}}
+if(!["google","bing","yahoo"].includes(S.set.engine))S.set.engine="google";
+if(S.set.suffix==null)S.set.suffix="";
+if(![2,3,4].includes(+S.set.slots))S.set.slots=2;
+let toastT;
+function toast(m){const t=$("#toast");t.textContent=m;t.classList.add("on");clearTimeout(toastT);toastT=setTimeout(()=>t.classList.remove("on"),2600)}
+const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const byId=id=>TERMS.find(t=>t.id===id);
+const pad4=n=>typeof n==="number"?String(n).padStart(4,"0"):String(n??"–");
+
+/* ---- vị trí ảnh: mỗi từ 2–4 ô; it.imgs[k] = ảnh | null; it.approved = ảnh đầu tiên (tương thích bản cũ) ---- */
+const MINS=2,MAXS=4;
+const item=id=>S.items[id]||(S.items[id]={approved:null,ex:null});
+const peek=id=>S.items[id]||{approved:null,ex:null};
+function nslotOf(it){let last=-1;(it.imgs||[]).forEach((x,i)=>{if(x)last=i});
+  return Math.max(MINS,Math.min(MAXS,Math.max(+it.nslot||+S.set.slots||MINS,last+1)))}
+function ensureImgs(it){
+  if(!Array.isArray(it.imgs))it.imgs=it.approved?[it.approved]:[];
+  const n=nslotOf(it);
+  while(it.imgs.length<n)it.imgs.push(null);
+  if(it.imgs.length>n)it.imgs.length=n;
+  return it.imgs;
+}
+function imgsOf(t){const it=S.items[t.id];if(!it)return [];return Array.isArray(it.imgs)?it.imgs.filter(Boolean):(it.approved?[it.approved]:[])}
+const hasImg=t=>imgsOf(t).length>0;
+const syncPrimary=it=>{it.approved=(it.imgs||[]).find(Boolean)||null};
+function firstFree(it,grow){const a=ensureImgs(it);let k=a.indexOf(null);
+  if(k<0&&grow&&a.length<MAXS){a.push(null);it.nslot=a.length;k=a.length-1}
+  return k}
+</script>
+<script>
+/* ============ 3. AI (Gemini – giải thích từ) · kho ảnh IndexedDB ============ */
+const GEM="https://generativelanguage.googleapis.com/v1beta/models/";
+
+function suggestedModel(msg,cur){
+  const hits=String(msg).match(/(?:gemini|gemma|imagen|veo)[A-Za-z0-9.\-]{2,40}/gi)||[];
+  for(const x of hits){const n=x.replace(/[.\-]+$/,"");if(n!==cur)return n}
+  return "";
+}
+const sleep=ms=>new Promise(r=>setTimeout(r,ms));
+function retryDelay(txt,att){
+  const m=/"retryDelay"\s*:\s*"?(\d+(?:\.\d+)?)s/.exec(txt);
+  if(m) return Math.min(+m[1]*1000+300,20000);
+  return Math.min(1500*Math.pow(2,att)+Math.random()*500,20000);
+}
+async function gemFetch(body){
+  if(!S.set.gem) throw new Error("no-key");
+  let switched=false, last="";
+  for(let att=0;att<4;att++){
+    const mdl=S.set.model;
+    let r;
+    try{
+      r=await fetch(GEM+mdl+":generateContent?key="+encodeURIComponent(S.set.gem),
+        {method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(body)});
+    }catch(netErr){                                  // mạng chập chớn → thử lại
+      last="network: "+netErr.message;
+      if(att<3){await sleep(retryDelay("",att));continue}
+      throw new Error("Gemini "+last);
+    }
+    if(r.ok) return r.json();
+    const txt=(await r.text()).slice(0,400);
+    last=r.status+": "+txt.slice(0,180);
+    /* model bị khai tử → tự chuyển 1 lần */
+    if((r.status===404||r.status===400)&&!switched){
+      const nw=suggestedModel(txt,mdl)||NEW_TEXT;
+      if(nw&&nw!==mdl){
+        switched=true;S.set.model=nw;save();
+        try{const e=$("#sModel");if(e)e.value=nw}catch(e){}
+        try{toast("Model "+mdl+" đã ngừng → chuyển sang "+nw)}catch(e){}
+        continue;
+      }
+    }
+    /* quá tải / rate-limit tạm thời → chờ rồi thử lại */
+    const transient=r.status===503||r.status===500||r.status===504||(r.status===429&&!/billing|plan/i.test(txt));
+    if(transient&&att<3){await sleep(retryDelay(txt,att));continue}
+    throw new Error("Gemini "+last);
+  }
+  throw new Error("Gemini "+(last||"thất bại sau 4 lần thử"));
+}
+async function gemJSON(prompt,schema){
+  const body={contents:[{parts:[{text:prompt}]}],
+    generationConfig:{temperature:.4,responseMimeType:"application/json",responseSchema:schema}};
+  const j=await gemFetch(body);
+  return JSON.parse(j.candidates[0].content.parts.map(p=>p.text||"").join(""));
+}
+
+/* 3.1 Giải thích từ (song ngữ + Revit + lưu ý hiện trường) – chỉ khi có Gemini key */
+async function explain(t,force){
+  const base={vi:t.vn||"",jp:t.mjp||"",en:t.en||"",revit:"",memo:""};
+  if(!S.set.gem) return base;
+  const it=item(t.id);
+  if(it.ex&&!force) return it.ex;
+  const p=`Bạn là kỹ sư xây dựng Nhật–Việt, hỗ trợ kỹ sư BIM người Việt đang học tiếng Nhật chuyên ngành.
+Từ: 「${t.jp}」(${t.yomi}) – tham khảo: ${t.mjp} / ${t.vn} / ${t.en}
+Trả JSON:
+- vi: giải thích tiếng Việt 1–2 câu, dễ hình dung ngoài công trình.
+- jp: 日本語での短い定義（1文）。
+- en: thuật ngữ tiếng Anh chuẩn.
+- revit: đối tượng/category tương ứng trong Revit (nếu không có thì "—").
+- memo: 1 lưu ý thực tế khi đọc bản vẽ / ngoài hiện trường.`;
+  const schema={type:"object",properties:{vi:{type:"string"},jp:{type:"string"},en:{type:"string"},
+    revit:{type:"string"},memo:{type:"string"}},required:["vi","jp","en"]};
+  try{const ex=await gemJSON(p,schema);it.ex=ex;return ex}
+  catch(e){toast("AI lỗi: "+String(e.message).slice(0,90));return it.ex||base}
+}
+
+/* ---- IndexedDB cho ảnh (tránh vỡ localStorage) ---- */
+let DBH=null;
+function idb(){return new Promise((res,rej)=>{if(DBH)return res(DBH);
+  const r=indexedDB.open("kvt-imgs",1);
+  r.onupgradeneeded=()=>{if(!r.result.objectStoreNames.contains("imgs"))r.result.createObjectStore("imgs")};
+  r.onsuccess=()=>{DBH=r.result;res(DBH)};r.onerror=()=>rej(r.error||new Error("idb"))})}
+async function idbPut(k,v){const d=await idb();return new Promise((res,rej)=>{
+  const t=d.transaction("imgs","readwrite");t.objectStore("imgs").put(v,k);t.oncomplete=()=>res(k);t.onerror=()=>rej(t.error)})}
+async function idbGet(k){const d=await idb();return new Promise((res,rej)=>{
+  const t=d.transaction("imgs","readonly"),q=t.objectStore("imgs").get(k);q.onsuccess=()=>res(q.result);q.onerror=()=>rej(q.error)})}
+async function idbKeys(){const d=await idb();return new Promise((res,rej)=>{
+  const t=d.transaction("imgs","readonly"),q=t.objectStore("imgs").getAllKeys();q.onsuccess=()=>res(q.result||[]);q.onerror=()=>rej(q.error)})}
+async function idbClear(){const d=await idb();return new Promise((res,rej)=>{
+  const t=d.transaction("imgs","readwrite");t.objectStore("imgs").clear();t.oncomplete=res;t.onerror=()=>rej(t.error)})}
+async function idbDel(k){const d=await idb();return new Promise((res,rej)=>{
+  const t=d.transaction("imgs","readwrite");t.objectStore("imgs").delete(k);t.oncomplete=()=>res();t.onerror=()=>rej(t.error)})}
+async function storeImg(dataUrl){
+  try{const k="im_"+Date.now()+"_"+Math.random().toString(36).slice(2,7);await idbPut(k,dataUrl);IMGC[k]=dataUrl;return "idb:"+k}
+  catch(e){return dataUrl}}
+const IMGC={},PENDIMG=new Set();
+const svgLoading="data:image/svg+xml;charset=utf-8,"+encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" width="300" height="200"><rect width="300" height="200" fill="#eef1f5"/><text x="150" y="105" font-size="13" fill="#9aa3ad" text-anchor="middle" font-family="sans-serif">đang tải…</text></svg>');
+function view(u){
+  if(!u)return "";
+  if(u.indexOf("idb:")!==0)return u;
+  const k=u.slice(4);
+  if(IMGC[k])return IMGC[k];
+  if(!PENDIMG.has(k)){PENDIMG.add(k);idbGet(k).then(v=>{PENDIMG.delete(k);if(v){IMGC[k]=v;scheduleRerender()}})}
+  return svgLoading;}
+let RTIMER=null;
+function scheduleRerender(){clearTimeout(RTIMER);RTIMER=setTimeout(()=>{
+  if(LBK>=0)drawLB();if(TAB==="learn")drawImgs();else if(TAB==="list")renderList();
+  else if(TAB==="lookup"&&typeof LKT!=="undefined"&&LKT)drawLk();
+  else if(TAB==="study"&&DECK.length)drawCard();},150)}
+/* 3.2 Xử lý ảnh người dùng: nén ≤max px, nền trắng, JPEG */
+function shrink(file,max){
+  return new Promise((res,rej)=>{
+    const fr=new FileReader();
+    fr.onload=()=>{const im=new Image();
+      im.onload=()=>{const s=Math.min(1,max/Math.max(im.width,im.height));
+        const cv=document.createElement("canvas");cv.width=Math.max(1,im.width*s|0);cv.height=Math.max(1,im.height*s|0);
+        const g=cv.getContext("2d");g.fillStyle="#fff";g.fillRect(0,0,cv.width,cv.height);g.drawImage(im,0,0,cv.width,cv.height);
+        res(cv.toDataURL("image/jpeg",.82))};
+      im.onerror=rej;im.src=fr.result};
+    fr.onerror=rej;fr.readAsDataURL(file);
+  });
+}
+/* data:image/… (dán / kéo từ trang tìm ảnh) → File để nén & lưu vào IndexedDB */
+function dataURLtoFile(u,name){
+  const m=/^data:([^;,]+)(;base64)?,([\s\S]*)$/i.exec(String(u||""));if(!m)return null;
+  let b;try{b=m[2]?Uint8Array.from(atob(m[3]),c=>c.charCodeAt(0)):new TextEncoder().encode(decodeURIComponent(m[3]))}catch(e){return null}
+  return new File([b],name||"anh-dan",{type:m[1]});
+}
+</script>
+<script>
+/* ============ 4. Tabs ============ */
+let TAB="learn";
+const TABS=["learn","list","lookup","study","save","set"];
+function go(tab){
+  if(!TABS.includes(tab))tab="learn";
+  TAB=tab;
+  $$("nav button").forEach(b=>{const on=b.dataset.tab===tab;b.classList.toggle("on",on);on?b.setAttribute("aria-current","page"):b.removeAttribute("aria-current")});
+  TABS.forEach(x=>$("#tab-"+x).classList.toggle("hide",x!==tab));
+  if(tab==="learn")renderLearn();
+  else if(tab==="list")renderList();
+  else if(tab==="study")showStudy();
+  else if(tab==="save"){renderCols();usage()}
+  else if(tab==="lookup"&&LKT)drawLk();
+}
+$$("nav button").forEach(b=>b.onclick=()=>{go(b.dataset.tab);window.scrollTo(0,0)});
+const ICON_DEL='<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h16"/><path d="M10 11v6M14 11v6"/><path d="M6 7l1 13h10l1-13"/><path d="M9 7V4h6v3"/></svg>';
+const ICON_EXT='<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 4h6v6"/><path d="M20 4l-9 9"/><path d="M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg>';
+
+/* ============ 5. Tab Danh sách – dùng CHUNG bộ lọc với tab Học (xem mục 9) ============ */
+const sel=new Set();let LCAP=300;
+const filtered=()=>lFilter();
+function imgOf(t){const a=imgsOf(t);return a.length?view(a[0].thumb||a[0].url):""}
+function renderList(){
+  const rows=filtered(),show=rows.slice(0,LCAP);
+  $("#tbody").innerHTML=show.map(t=>{
+    const u=imgOf(t),n=imgsOf(t).length,on=!!S.star[t.id],ls=learnState(t);
+    return `<tr data-id="${esc(t.id)}">
+      <td><label class="ckl"><input type="checkbox" class="ck" aria-label="Chọn ${esc(t.jp)}" ${sel.has(t.id)?"checked":""}></label></td>
+      <td><button class="ib stBtn${on?" on":""}" aria-pressed="${on}" aria-label="Gắn sao">${on?"★":"☆"}</button></td>
+      <td>${u?`<img class="thumb" src="${esc(u)}" alt="" loading="lazy" onerror="this.style.opacity=.25">`:'<div class="thumb"></div>'}</td>
+      <td class="mono muted">${esc(pad4(t.no))}</td>
+      <td><button class="lnk aLearn" lang="ja">${esc(t.jp)}</button><div class="muted" lang="ja">${esc(t.yomi)}</div></td>
+      <td>${esc(t.vn)}</td>
+      <td>${t.fields.map(x=>`<span class="chip b" lang="ja">${esc(x)}</span>`).join("")}${t.parts.map(x=>`<span class="chip" lang="ja">${esc(x)}</span>`).join("")}</td>
+      <td>${n?`<span class="st a">Có ảnh · ${n}</span>`:'<span class="st e">Chưa có ảnh</span>'}<div class="sm lst ${ls}">${LSTLAB[ls]}</div></td>
+      <td class="acts"><button class="btn sm aLearn">Học</button><button class="btn sm aGo" title="Mở trang tìm ảnh ở tab mới và chuyển sang tab Học để dán ảnh">${ICON_EXT} Tìm ảnh</button><button class="btn sm aLk">Tra</button><button class="ib aDel" title="Xoá từ này" aria-label="Xoá ${esc(t.jp)}">${ICON_DEL}</button></td></tr>`;
+  }).join("")+(rows.length>LCAP?`<tr class="mrow"><td colspan="9" class="more"><button class="btn" id="lMore">Hiện thêm ${Math.min(300,rows.length-LCAP)} từ · còn ${rows.length-LCAP}</button></td></tr>`:"")
+    ||'<tr class="mrow"><td colspan="9" class="empty">Không có từ nào khớp bộ lọc.</td></tr>';
+  const all=TERMS.filter(t=>!isTmp(t)),a=all.filter(hasImg).length;
+  $("#stats").innerHTML=`Hiển thị <b>${rows.length}</b>/${all.length} · có ảnh <b>${a}</b> · ★ <b>${all.filter(t=>S.star[t.id]).length}</b>`;
+  updDelBtn();
+}
+function updDelBtn(){const n=[...sel].filter(id=>{const t=byId(id);return t&&!isTmp(t)}).length,b=$("#btnDel");
+  b.disabled=!n;b.innerHTML=ICON_DEL+(n?" Xoá "+n+" từ đã chọn":" Xoá đã chọn")}
+/* xoá từ vựng: bỏ khỏi danh sách + xoá ảnh (IndexedDB), sao, tiến độ; gỡ khỏi các bộ đã lưu */
+function delTerms(ids){
+  const T=[...new Set(ids)].map(byId).filter(t=>t&&!isTmp(t));if(!T.length)return false;
+  const names=T.slice(0,5).map(t=>"「"+t.jp+"」").join(", ")+(T.length>5?" … (+"+(T.length-5)+" từ)":"");
+  if(!confirm((T.length>1?"Xoá "+T.length+" từ: ":"Xoá ")+names+" khỏi danh sách?\nẢnh, sao và tiến độ học của "+(T.length>1?"các từ này":"từ này")+" cũng bị xoá."))return false;
+  const del=new Set(T.map(t=>t.id)),keys=new Set(),still=new Set();
+  const idbOf=(it,f)=>[it.approved].concat(it.cands||[],it.imgs||[]).forEach(c=>{if(c&&String(c.url).startsWith("idb:"))f.add(c.url.slice(4))});
+  del.forEach(id=>{if(S.items[id])idbOf(S.items[id],keys);delete S.items[id];delete S.star[id];delete S.srs[id];sel.delete(id)});
+  Object.values(S.items).forEach(it=>idbOf(it,still));
+  keys.forEach(k=>{if(!still.has(k)){delete IMGC[k];idbDel(k).catch(()=>{})}});
+  S.cols.forEach(c=>c.ids=c.ids.filter(id=>!del.has(id)));
+  TERMS=TERMS.filter(t=>!del.has(t.id));persistTerms();save();
+  if(del.has(LID))LID="";
+  if(LKT&&del.has(LKT.id)){LKT=null;$("#lkLearn").disabled=true;
+    $("#lkInfo").innerHTML='<div class="empty">Kết quả tra (dữ liệu DB + giải thích AI nếu có Gemini key) sẽ hiện ở đây.</div>';$("#lkSlots").innerHTML='<div class="muted sm">—</div>'}
+  $("#chkAll").checked=false;initFilters();renderCols();fillDeckOptions();if(TAB==="list")renderList();
+  toast("Đã xoá "+(T.length>1?T.length+" từ":"「"+T[0].jp+"」"));return true;
+}
+$("#tbody").addEventListener("change",e=>{if(!e.target.classList.contains("ck"))return;const id=e.target.closest("tr").dataset.id;e.target.checked?sel.add(id):sel.delete(id);updDelBtn()});
+$("#tbody").addEventListener("click",e=>{
+  if(e.target.closest("#lMore")){LCAP+=300;renderList();return}
+  const b=e.target.closest("button");if(!b)return;const tr=b.closest("tr");if(!tr||!tr.dataset.id)return;
+  const id=tr.dataset.id,t=byId(id);if(!t)return;
+  if(b.classList.contains("stBtn")){if(S.star[id])delete S.star[id];else S.star[id]=true;saveLearn();renderList()}
+  else if(b.classList.contains("aLearn"))openLearn(id);
+  else if(b.classList.contains("aGo")){openLearn(id);openSearch(t)}
+  else if(b.classList.contains("aLk")){$("#lkq").value=t.jp;go("lookup");lookup()}
+  else if(b.classList.contains("aDel"))delTerms([id]);
+});
+$("#btnDel").onclick=()=>delTerms([...sel]);
+$("#chkAll").onchange=e=>{filtered().forEach(t=>e.target.checked?sel.add(t.id):sel.delete(t.id));renderList()};
+$("#btnAdd").onclick=()=>{$("#addCard").classList.toggle("hide");if(!$("#addCard").classList.contains("hide"))$("#nJp").focus()};
+$("#nCancel").onclick=()=>$("#addCard").classList.add("hide");
+const KROW=[["あ","あいうえおぁぃぅぇぉゔ"],["か","かきくけこがぎぐげごゕゖ"],["さ","さしすせそざじずぜぞ"],["た","たちつてとだぢづでどっ"],["な","なにぬねの"],
+  ["は","はひふへほばびぶべぼぱぴぷぺぽ"],["ま","まみむめも"],["や","やゆよゃゅょ"],["ら","らりるれろ"],["わ","わゐゑをんゎ"]];
+function rowOf(s){const c=String(s||"").trim().charAt(0);if(!c)return "";
+  if(/[A-Za-zＡ-Ｚａ-ｚ]/.test(c))return "英字";if(/[0-9０-９]/.test(c))return "数字";
+  const h=c>="ァ"&&c<="ヶ"?String.fromCharCode(c.charCodeAt(0)-0x60):c,r=KROW.find(x=>x[1].includes(h));return r?r[0]+"行":""}
+$("#addCard").addEventListener("keydown",e=>{
+  if(e.key!=="Enter"||e.isComposing||e.keyCode===229)return;   // Enter đang chọn chữ Hán (IME) thì bỏ qua
+  const tg=e.target;if(tg.tagName==="INPUT"&&!/^(file|checkbox)$/.test(tg.type)){e.preventDefault();$("#nSave").click()}});
+$("#nSave").onclick=async()=>{
+  const jp=$("#nJp").value.trim();if(!jp){toast("Nhập 用語 trước đã");$("#nJp").focus();return}
+  const dup=TERMS.find(x=>!isTmp(x)&&x.jp===jp);
+  if(dup&&!confirm("「"+jp+"」 đã có trong danh sách (No. "+pad4(dup.no)+"). Vẫn thêm?"))return;
+  let no=TERMS.reduce((m,t)=>Math.max(m,typeof t.no==="number"?t.no:0),0)+1;
+  while(S.items["t"+no]||S.srs["t"+no]||S.star["t"+no])no++;   // không “nhận nhầm” ảnh / tiến độ cũ của từ đã xoá khỏi bộ trước
+  const yomi=$("#nYomi").value.trim();
+  const t={id:"t"+no,no,jp,yomi,mjp:$("#nMjp").value.trim(),vn:$("#nVn").value.trim(),en:$("#nEn").value.trim(),
+    fields:splitL($("#nField").value),parts:splitL($("#nPart").value),row:$("#nRow").value.trim()||rowOf(yomi||(hasKanji(jp)?"":jp)),memo:$("#nMemo").value.trim()};
+  const tmp=TERMS.find(x=>isTmp(x)&&x.jp===jp);   // từ vừa tra ở tab Tra từ → giữ ảnh / giải thích AI
+  if(tmp){if(S.items[tmp.id])S.items[t.id]=S.items[tmp.id];delete S.items[tmp.id];TERMS=TERMS.filter(x=>x!==tmp);if(LKT===tmp)LKT=t}
+  TERMS.push(t);persistTerms();
+  if($("#nStar").checked)S.star[t.id]=true;
+  save();
+  const files=[...($("#nFile").files||[])].slice(0,MAXS);
+  if(files.length)await putFiles(t.id,files,-1);
+  ["nJp","nYomi","nMjp","nVn","nEn","nField","nPart","nRow","nMemo"].forEach(id=>$("#"+id).value="");$("#nFile").value="";
+  initFilters();renderList();$("#nJp").focus();
+  toast("✓ Đã thêm 「"+jp+"」 · No. "+pad4(no)+(files.length?" + "+files.length+" ảnh":"")+(lFilter().some(x=>x.id===t.id)?"":" · đang bị bộ lọc ẩn"));
+};
+
+/* ============ 7. Tab Tra từ ============ */
+function infoHTML(t,ex){
+  return `<div class="big" lang="ja">${esc(t.jp)}</div><div class="muted" lang="ja">${esc(t.yomi)}</div>
+  <div class="kv" style="margin-top:12px">
+    <b>Nghĩa VN</b><div>${esc(ex.vi||t.vn)||"—"}</div>
+    <b>意味(JP)</b><div lang="ja">${esc(ex.jp||t.mjp)||"—"}</div>
+    <b>English</b><div>${esc(ex.en||t.en)||"—"}</div>
+    <b>Revit</b><div>${esc(ex.revit||"—")}</div>
+    <b>分野</b><div>${t.fields.map(x=>`<span class="chip b" lang="ja">${esc(x)}</span>`).join("")||"—"}</div>
+    <b>部位</b><div>${t.parts.map(x=>`<span class="chip" lang="ja">${esc(x)}</span>`).join("")||"—"}</div>
+    <b>メモ</b><div lang="ja">${esc(t.memo||"—")}</div>
+    <b>Ghi chú AI</b><div>${esc(ex.memo||"—")}</div>
+  </div>`+(S.set.gem?"":'<div class="sm muted" style="margin-top:12px">Nhập Gemini API key ở tab Cài đặt nếu muốn có thêm giải thích AI.</div>');
+}
+function srcChip(s){const m={web:["chip b","web"],free:["chip g","miễn phí"],ai:["chip y","AI tạo"],user:["chip g","của tôi"],demo:["chip","demo"]}[s]||["chip",s||"—"];return '<span class="'+m[0]+'">'+m[1]+'</span>'}
+const svgBroken="data:image/svg+xml;charset=utf-8,"+encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" width="300" height="200"><rect width="300" height="200" fill="#F0EFED"/><text x="150" y="105" font-size="14" fill="#66635E" text-anchor="middle" font-family="sans-serif">không tải được ảnh</text></svg>');
+function slotStrip(it){const a=ensureImgs(it),f=a.filter(Boolean).length;
+  return `<div class="strip"><span class="lab">Vị trí ảnh của từ · ${f}/${a.length}</span><div class="sx">${a.map((c,k)=>c?`<img src="${esc(view(c.thumb||c.url))}" alt="Vị trí ${k+1}" title="Vị trí ${k+1}" onerror="this.onerror=null;this.src=svgBroken">`:`<span class="sx-e">${k+1}</span>`).join("")}</div></div>`}
+let LKT=null;
+function lkFind(q){
+  return TERMS.find(x=>x.jp===q)||TERMS.find(x=>x.yomi===q)||TERMS.find(x=>(x.jp+x.yomi+x.vn+x.en).toLowerCase().includes(q.toLowerCase()));
+}
+async function lookup(){
+  const q=$("#lkq").value.trim();if(!q)return;
+  let t=lkFind(q);
+  if(!t){t={id:"tmp_"+q,no:"–",jp:q,yomi:"",mjp:"",vn:"",en:"",fields:[],parts:[],row:"",memo:""};TERMS.push(t)}
+  LKT=t;drawLk();
+  if(!S.set.gem){$("#lkInfo").innerHTML=infoHTML(t,{});return}
+  $("#lkInfo").innerHTML='<div class="empty">Đang hỏi AI…</div>';
+  const ex=await explain(t,true);save();
+  if(LKT===t)$("#lkInfo").innerHTML=infoHTML(t,ex);
+}
+function drawLk(){
+  if(!LKT)return;
+  $("#lkSlots").innerHTML=slotStrip(peek(LKT.id));
+  $("#lkLearn").disabled=isTmp(LKT);
+}
+$("#lkGo").onclick=lookup;
+$("#lkq").addEventListener("keydown",e=>{if(e.key==="Enter")lookup()});
+$("#lkImg").onclick=()=>{
+  const q=$("#lkq").value.trim();
+  if(q&&(!LKT||LKT.jp!==q))lookup();          // từ mới gõ → tra luôn để dán ảnh vào đúng từ
+  if(LKT)openSearch(LKT);else toast("Nhập từ cần tìm ảnh trước đã");
+};
+$("#lkAdd").onclick=()=>{if(!LKT){toast("Tra 1 từ trước đã");return}pickFiles(-1,LKT.id)};
+$("#lkLearn").onclick=()=>{if(LKT&&!isTmp(LKT))openLearn(LKT.id)};
+const lkDrop=$("#lkDrop");
+if(TOUCH)lkDrop.innerHTML='Bấm <b>Tìm ảnh (tab mới)</b> → nhấn giữ ảnh › <i>Lưu ảnh</i> → quay lại bấm <b>↑ Ảnh của tôi</b> để thêm ảnh';
+["dragenter","dragover"].forEach(ev=>lkDrop.addEventListener(ev,e=>{e.preventDefault();lkDrop.classList.add("hot")}));
+["dragleave","drop"].forEach(ev=>lkDrop.addEventListener(ev,e=>{e.preventDefault();lkDrop.classList.remove("hot")}));
+lkDrop.addEventListener("drop",e=>{if(!LKT){toast("Tra 1 từ trước đã");return}dropInto(e.dataTransfer,-1,LKT.id)});
+
+/* ---- phím tắt toàn cục ---- */
+document.addEventListener("keydown",e=>{
+  if(!$("#lb").classList.contains("hide")){lbKey(e);return}
+  const tg=e.target,tn=tg.tagName||"";
+  if(/^(INPUT|TEXTAREA|SELECT)$/.test(tn)||tg.isContentEditable)return;
+  if(e.ctrlKey||e.metaKey||e.altKey)return;
+  if(TAB==="learn"){learnKey(e);return}
+  if(/^(BUTTON|A|SUMMARY)$/.test(tn)&&(e.key==="Enter"||e.key===" "))return;
+  if(TAB==="study"){
+    if(e.key===" "){e.preventDefault();$("#stShow").click()}
+    else if(e.key==="1")$("#stNo").click();else if(e.key==="2")$("#stYes").click();
+    else if(e.key==="ArrowLeft"||e.key==="ArrowRight"){e.preventDefault();stStep(e.key==="ArrowLeft"?-1:1)}
+  }
+});
+/* bấm chuột vào nút ở tab Học/Ôn tập hoặc thanh tab → bỏ focus để phím tắt (Space, 1, 2…) không kích hoạt lại nút đó */
+document.addEventListener("click",e=>{const b=e.target.closest&&e.target.closest("button");
+  if(b&&e.detail>0&&b.closest("#tab-learn,#tab-study,nav"))b.blur()});
+</script>
+<script>
+/* ============ 9. Tab Học ============ */
+const KANJI=/[\u3400-\u4DBF\u4E00-\u9FFF\uF900-\uFAFF々〆]/;
+const hasKanji=s=>KANJI.test(String(s||""));
+let LID="",LLIST=[],LSTAR=false,LREV={id:"",y:false,img:new Set()},RANDK={},PICKK=-1,PICKID="",LBK=-1,SEARCHED="";
+/* bộ lọc dùng chung: mỗi nhóm = cùng 1 ô lọc ở tab Học / Danh sách / Ôn tập – đổi ở đâu cũng lọc cả ba (Ôn tập không có ô sắp xếp) */
+const FGRP=[["#lq","#q","#stq"],["#lField","#fField","#stField"],["#lPart","#fPart","#stPart"],["#lRow","#fRow","#stRow"],
+  ["#lImg","#fImg","#stImg"],["#lLearn","#fLearn","#stLearn"],["#lSort","#fSort"]];
+const STARB=[["#lStar","Gắn sao"],["#btnStar","Chỉ từ gắn sao"],["#stStar","Chỉ từ gắn sao"]];
+const fSig=()=>FGRP.map(g=>$(g[0]).value).join("\u0001")+"\u0001"+LSTAR;
+const LSTLAB={known:"✓ Đã thuộc",weak:"× Chưa thuộc",new:"● Chưa học"};
+const ICON_X='<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>';
+const ICON_RE='<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 12a8 8 0 1 1-2.6-5.9"/><path d="M20 4v5h-5"/></svg>';
+const ICON_AI='<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l2.2 6.6L21 11l-6.8 2.3L12 20l-2.2-6.7L3 11l6.8-2.4z"/></svg>';
+const ICON_HIDE='<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/><path d="M3 3l18 18"/></svg>';
+function learnState(t){const s=S.srs[t.id];if(!s)return "new";if(s.known===true)return "known";if(s.known===false)return "weak";
+  return (s.ok||0)>=2?"known":((s.ok||0)+(s.ng||0)>0?"weak":"new")}
+function lFilter(){
+  const q=$("#lq").value.trim().toLowerCase(),f=$("#lField").value,p=$("#lPart").value,r=$("#lRow").value,im=$("#lImg").value,ls=$("#lLearn").value,so=$("#lSort").value;
+  const L=TERMS.filter(t=>{
+    if(isTmp(t))return false;
+    if(LSTAR&&!S.star[t.id])return false;
+    if(f&&!t.fields.includes(f))return false;
+    if(p&&!t.parts.includes(p))return false;
+    if(r&&t.row!==r)return false;
+    if(im==="has"&&!hasImg(t))return false;
+    if(im==="none"&&hasImg(t))return false;
+    if(ls&&learnState(t)!==ls)return false;
+    if(q&&!(t.jp+"\n"+t.yomi+"\n"+t.vn+"\n"+t.en+"\n"+t.mjp+"\n"+(t.memo||"")).toLowerCase().includes(q))return false;
+    return true});
+  if(so==="yomi")L.sort((a,b)=>String(a.yomi||a.jp).localeCompare(String(b.yomi||b.jp),"ja"));
+  else if(so==="rand"){L.forEach(t=>{if(RANDK[t.id]==null)RANDK[t.id]=Math.random()});L.sort((a,b)=>RANDK[a.id]-RANDK[b.id])}
+  else L.sort((a,b)=>(a.no||0)-(b.no||0));
+  return L;
+}
+function resetReveal(id){LREV={id,y:!S.learn.hideYomi,img:new Set(S.learn.hideImg?[]:[0,1,2,3])}}
+function renderLearn(){
+  LLIST=lFilter();drawIndex();
+  if(!LLIST.length){LID="";drawLearn();return}
+  if(!LLIST.some(t=>t.id===LID))LID=LLIST[0].id;
+  selectTerm(LID);
+}
+function itemHTML(t){
+  const st=learnState(t),n=imgsOf(t).length,on=t.id===LID;
+  return `<button class="wi${on?" on":""}" data-id="${esc(t.id)}" role="option" aria-selected="${on}"><span class="wn">${esc(pad4(t.no))}</span><span class="wj" lang="ja">${esc(t.jp)}</span><span class="wm">${S.star[t.id]?'<i class="s1" title="Đã gắn sao">★</i>':""}${n?`<i title="${n} ảnh">▣${n}</i>`:""}${st==="known"?'<i class="ok" title="Đã thuộc">✓</i>':st==="weak"?'<i class="ng" title="Chưa thuộc">×</i>':""}</span></button>`;
+}
+function drawIndex(){
+  const el=$("#lList"),top=el.scrollTop;
+  el.innerHTML=LLIST.map(itemHTML).join("")||'<div class="empty">Không có từ nào khớp bộ lọc.</div>';
+  el.scrollTop=top;
+  $("#lCount").textContent=LLIST.length+" / "+TERMS.filter(t=>!isTmp(t)).length;
+}
+function refreshItem(id){const el=$('#lList .wi[data-id="'+CSS.escape(id)+'"]'),t=byId(id);if(el&&t)el.outerHTML=itemHTML(t)}
+function keepVisible(el){const box=$("#lList");if(!box||!el)return;const y=el.offsetTop,h=el.offsetHeight;
+  if(y<box.scrollTop)box.scrollTop=y-4;else if(y+h>box.scrollTop+box.clientHeight)box.scrollTop=y+h-box.clientHeight+4}
+const HINT0=TOUCH?"Bấm ↑ Tải ảnh lên để chọn ảnh trong máy hoặc chụp ảnh":"Kéo–thả hoặc Ctrl+V để dán ảnh";
+function selectTerm(id){
+  if(!id)return;LID=id;
+  if(S.learn.last!==id){S.learn.last=id;LS.set("kvt.learn",S.learn)}
+  if(LREV.id!==id){resetReveal(id);$("#lnRun").textContent=HINT0}
+  $$("#lList .wi.on").forEach(x=>{x.classList.remove("on");x.setAttribute("aria-selected","false")});
+  const el=$('#lList .wi[data-id="'+CSS.escape(id)+'"]');
+  if(el){el.classList.add("on");el.setAttribute("aria-selected","true");keepVisible(el)}
+  drawLearn();
+}
+function stepTerm(d){if(!LLIST.length)return;let i=LLIST.findIndex(t=>t.id===LID);
+  i=i<0?0:Math.max(0,Math.min(LLIST.length-1,i+d));if(LLIST[i].id!==LID)selectTerm(LLIST[i].id)}
+function drawLearn(){drawTerm();drawImgs();drawLbar()}
+const yNeedsCover=t=>!!(t&&t.yomi&&hasKanji(t.jp));
+function filledIdx(){const t=byId(LID);return t?ensureImgs(peek(t.id)).map((c,k)=>c?k:-1).filter(k=>k>=0):[]}
+function coverable(){const t=byId(LID);return !!t&&(yNeedsCover(t)||filledIdx().length>0)}
+function allOpen(){const t=byId(LID);return !!t&&(!yNeedsCover(t)||LREV.y)&&filledIdx().every(k=>LREV.img.has(k))}
+function drawLbar(){
+  const i=LLIST.findIndex(t=>t.id===LID);
+  $("#lPos").textContent=LLIST.length?(i+1)+" / "+LLIST.length:"0 / 0";
+  $("#lPrev").disabled=i<=0;$("#lNext").disabled=i<0||i>=LLIST.length-1;
+  const c=coverable();
+  $("#lReveal").innerHTML=(c&&allOpen()?"Che tất cả":"Hiện tất cả")+" <kbd>Space</kbd>";$("#lReveal").disabled=!c;
+}
+function toggleAll(){if(!coverable())return;
+  if(allOpen()){LREV.y=false;LREV.img.clear()}else{LREV.y=true;filledIdx().forEach(k=>LREV.img.add(k))}
+  drawLearn()}
+function toggleY(){const t=byId(LID);if(!yNeedsCover(t))return;LREV.y=!LREV.y;drawTerm();drawLbar()}
+function toggleAllImgs(){const f=filledIdx();if(!f.length){toast("Từ này chưa có ảnh – bấm “Tải ảnh lên”");return}
+  const all=f.every(k=>LREV.img.has(k));f.forEach(k=>all?LREV.img.delete(k):LREV.img.add(k));drawImgs();drawLbar()}
+
+/* ---- Ô A: từ vựng ---- */
+/* bảng nghĩa (dùng cho ô A tab Học và mặt sau thẻ ôn tập) */
+function specHTML(t,ex,vnFirst){
+  const D=(k,v,cls,lang)=>`<dt>${k}</dt><dd${cls?` class="${cls}"`:""}${lang?` lang="${lang}"`:""}>${v?esc(v):'<span class="muted">—</span>'}</dd>`;
+  const A=(k,v)=>`<dt class="ai">${k}</dt><dd>${esc(v)}</dd>`;
+  const en=D("EN / BIM",t.en,"en"),vn=D("Tiếng Việt",t.vn);
+  let s=(vnFirst?vn+en:en+vn)+D("意味 (JP)",t.mjp,"","ja")+D("メモ 現場・図面",t.memo,"","ja");
+  if(ex){
+    if(ex.vi&&ex.vi!==t.vn)s+=A("AI · Giải thích",ex.vi);
+    if(ex.revit&&ex.revit!=="—")s+=A("AI · Revit",ex.revit);
+    if(ex.memo)s+=A("AI · Lưu ý",ex.memo);
+  }
+  return s;
+}
+const chipsHTML=t=>t.fields.map(x=>`<span class="chip b" lang="ja">${esc(x)}</span>`).join("")+t.parts.map(x=>`<span class="chip" lang="ja">${esc(x)}</span>`).join("")+(t.row?`<span class="chip o" lang="ja">${esc(t.row)}</span>`:"");
+function drawTerm(){
+  const t=byId(LID),body=$("#aBody");
+  ["#aNg","#aOk","#aStar"].forEach(s=>$(s).disabled=!t);
+  if(!t){body.innerHTML='<div class="empty">Không có từ nào khớp bộ lọc.<br><button class="btn" id="aClr">Xoá lọc</button></div>';
+    $("#aNo").textContent="No. —";return}
+  const it=peek(t.id),ex=it.ex,s=S.srs[t.id]||{},st=learnState(t),kj=hasKanji(t.jp),on=!!S.star[t.id];
+  $("#aNo").textContent="No. "+pad4(t.no);
+  const sb=$("#aStar");sb.textContent=on?"★":"☆";sb.classList.toggle("on",on);sb.setAttribute("aria-pressed",on);sb.setAttribute("aria-label",on?"Bỏ sao":"Gắn sao");
+  let y;
+  if(!t.yomi)y='<span class="muted">— chưa có cách đọc —</span>';
+  else if(kj&&!LREV.y)y='<button class="ycov" id="yShow" aria-label="Hiện cách đọc"><span class="hz" aria-hidden="true"></span><span class="yl">よみ · Bấm để xem cách đọc</span><kbd>R</kbd></button>';
+  else y=`<span class="yv" lang="ja">${esc(t.yomi)}</span>`+(kj?'<button class="btn sm ghost" id="yHide">Che lại</button>':'<span class="sm muted">không có Hán tự · không che</span>');
+  const spec=specHTML(t,ex),chips=chipsHTML(t);
+  const lab=LSTLAB[st];
+  const stat=`<span class="lst ${st}">${lab}</span>`+((s.ok||s.ng)?`<span class="muted"> · đúng ${s.ok||0} · sai ${s.ng||0}</span>`:"");
+  body.innerHTML=`<div class="term" lang="ja">${esc(t.jp)}</div><div class="yrow">${y}</div><dl class="spec">${spec}</dl>${chips?`<div class="chips">${chips}</div>`:""}
+    <div class="arow"><span class="lab">Tiến độ</span><span class="sm" id="aStat">${stat}</span><span class="grow"></span><button class="btn sm ghost" id="aAI">${ICON_AI} Giải thích AI</button></div>`;
+}
+$("#aBody").addEventListener("click",e=>{
+  if(e.target.closest("#yShow")){LREV.y=true;drawTerm();drawLbar();if(e.detail===0){const h=$("#yHide");if(h)h.focus()}}
+  else if(e.target.closest("#yHide")){LREV.y=false;drawTerm();drawLbar();if(e.detail===0){const s=$("#yShow");if(s)s.focus()}}
+  else if(e.target.closest("#aClr"))clearLearnFilters();
+  else if(e.target.closest("#aAI"))aiExplain();
+});
+
+/* ---- Ô B: 2–4 vị trí ảnh ---- */
+function drawImgs(){
+  const t=byId(LID),box=$("#slots");
+  ["#bUp","#bFind","#slotAdd","#slotDel","#bAll"].forEach(s=>$(s).disabled=!t);
+  if(!t){box.className="slots n2";box.innerHTML='<div class="empty" style="grid-column:1/-1">—</div>';$("#bInfo").textContent="";return}
+  const a=ensureImgs(peek(t.id)),n=a.length,f=a.filter(Boolean).length;
+  box.className="slots n"+n;
+  box.innerHTML=a.map((c,k)=>slotHTML(t,c,k)).join("");
+  $("#bInfo").textContent=f+"/"+n;
+  $("#slotN").textContent=n;$("#slotDel").disabled=n<=MINS;$("#slotAdd").disabled=n>=MAXS;
+  const open=a.every((c,k)=>!c||LREV.img.has(k));
+  $("#bAll").innerHTML=(f&&open?"Che ảnh":"Hiện ảnh")+" <kbd>I</kbd>";$("#bAll").disabled=!f;
+  a.forEach(c=>{if(c)view(c.url)});            // nạp trước từ IndexedDB để mở ảnh tức thì
+}
+function slotHTML(t,c,k){
+  const L="Ảnh "+(k+1);
+  if(!c)return `<figure class="slot" data-k="${k}"><div class="sl-box"><div class="sl-empty">
+    <button class="btn sm pri sl-up">↑ Tải ảnh lên</button><button class="btn sm ghost sl-url">Dán URL ảnh</button>
+    ${TOUCH?"":'<span class="hint">hoặc kéo–thả ảnh vào đây</span>'}</div></div>
+    <figcaption><span class="lab">${k+1}</span><span class="cap">Vị trí trống</span></figcaption></figure>`;
+  const open=LREV.img.has(k);
+  const media=open?`<img class="sl-im" src="${esc(view(c.url))}" alt="${esc(L+" – "+t.jp)}" title="Bấm để xem lớn" onerror="this.onerror=null;this.src=svgBroken">`
+    :`<button class="sl-cover" aria-label="Hiện ${L}"><span class="lbl">${L} · bấm để xem</span></button>`;
+  return `<figure class="slot${open?"":" cov"}" data-k="${k}"><div class="sl-box">${media}</div>
+    <figcaption><span class="lab">${k+1}</span>${srcChip(c.src)}<span class="cap">${open&&!(c.src==="user"&&c.site==="ảnh của tôi")?esc(c.site||c.title||""):""}</span><span class="acts">${open?`<button class="ib sl-hide" title="Che lại" aria-label="Che lại ${L}">${ICON_HIDE}</button>`:""}<button class="ib sl-up" title="Thay bằng ảnh khác" aria-label="Thay ${L}">${ICON_RE}</button><button class="ib sl-del" title="Xoá ảnh khỏi vị trí này" aria-label="Xoá ${L}">${ICON_X}</button></span></figcaption></figure>`;
+}
+function afterImgChange(id){
+  if(TAB==="learn"){if(id===LID){drawImgs();drawLbar()}refreshItem(id)}
+  else if(TAB==="lookup"&&LKT&&LKT.id===id)drawLk();
+  else if(TAB==="list")renderList();
+}
+$("#slots").addEventListener("click",e=>{
+  const fig=e.target.closest(".slot");if(!fig)return;const k=+fig.dataset.k;
+  if(e.target.closest(".sl-cover")){LREV.img.add(k);drawImgs();drawLbar();if(e.detail===0){const h=$('#slots .slot[data-k="'+k+'"] .sl-hide');if(h)h.focus()}}
+  else if(e.target.closest(".sl-im"))openLB(k);
+  else if(e.target.closest(".sl-hide")){LREV.img.delete(k);drawImgs();drawLbar();if(e.detail===0){const c=$('#slots .slot[data-k="'+k+'"] .sl-cover');if(c)c.focus()}}
+  else if(e.target.closest(".sl-up"))pickFiles(k);
+  else if(e.target.closest(".sl-url"))urlToSlot(k);
+  else if(e.target.closest(".sl-del"))delSlot(k);
+});
+/* kéo–thả: vào đúng ô, hoặc vào khung ảnh → ô trống đầu tiên */
+$("#slots").addEventListener("dragover",e=>{const f=e.target.closest(".slot");if(!f)return;e.preventDefault();
+  $$("#slots .slot.hot").forEach(x=>x!==f&&x.classList.remove("hot"));f.classList.add("hot")});
+$("#slots").addEventListener("dragleave",e=>{const f=e.target.closest(".slot");if(f&&!f.contains(e.relatedTarget))f.classList.remove("hot")});
+$("#slots").addEventListener("drop",e=>{const f=e.target.closest(".slot");if(!f)return;e.preventDefault();e.stopPropagation();
+  f.classList.remove("hot");dropInto(e.dataTransfer,+f.dataset.k)});
+$("#pB").addEventListener("dragover",e=>e.preventDefault());
+$("#pB").addEventListener("drop",e=>{e.preventDefault();$$("#slots .slot.hot").forEach(x=>x.classList.remove("hot"));dropInto(e.dataTransfer,-1)});
+["dragover","drop"].forEach(ev=>window.addEventListener(ev,e=>{if(!(e.target&&e.target.type==="file"))e.preventDefault()}));
+async function dropInto(dt,k,id){
+  id=id||LID;if(!id||!dt)return;
+  const files=[...(dt.files||[])].filter(f=>f.type&&f.type.startsWith("image/"));
+  if(files.length){await putFiles(id,files,k);return}
+  let u="";const h=dt.getData("text/html");const m=h&&/<img[^>]+src=["']([^"']+)["']/i.exec(h);if(m)u=m[1];
+  if(!u)u=(dt.getData("text/uri-list")||dt.getData("text/plain")||"").split(/\r?\n/).map(x=>x.trim()).find(x=>/^https?:\/\//i.test(x))||"";
+  if(u)setUrlSlot(id,u,k);else toast("Không nhận được ảnh – thử chuột phải ảnh › Sao chép hình ảnh rồi Ctrl+V");
+}
+function releaseImg(it,c){
+  if(!c||!String(c.url).startsWith("idb:"))return;
+  const used=(it.cands||[]).concat(it.imgs||[]).some(x=>x&&x.url===c.url);
+  if(!used){const k=c.url.slice(4);delete IMGC[k];idbDel(k).catch(()=>{})}
+}
+async function putFiles(id,files,k){
+  files=[...files].filter(f=>f&&f.type&&f.type.startsWith("image/"));
+  if(!files.length){toast("Chưa chọn file ảnh");return 0}
+  const it=item(id),t=byId(id);let n=0,skip=0;
+  for(const f of files){
+    const a=ensureImgs(it),pos=(k!=null&&k>=0&&k<a.length&&n===0)?k:firstFree(it,true);
+    if(pos<0){skip++;continue}
+    let d;try{d=await storeImg(await shrink(f,1024))}catch(err){toast("Không đọc được ảnh "+f.name);continue}
+    const old=a[pos];
+    a[pos]={url:d,thumb:null,title:f.name,page:"",site:"ảnh của tôi",src:"user",score:100,why:"người dùng tải lên",at:Date.now()};
+    if(old)releaseImg(it,old);
+    if(id===LID)LREV.img.add(pos);              // ảnh vừa tải lên → hiện ngay
+    n++;
+  }
+  syncPrimary(it);save();afterImgChange(id);
+  if(n)toast("✓ Đã lưu "+n+" ảnh cho "+(t?t.jp:"")+(skip?" · bỏ qua "+skip+" (đã đủ "+MAXS+" vị trí)":""));
+  else if(skip)toast("Đã đủ "+MAXS+" vị trí ảnh – xoá bớt hoặc bấm nút thay ở ảnh");
+  return n;
+}
+function setUrlSlot(id,u,k){
+  u=String(u||"").trim();
+  if(/^data:image\//i.test(u)){const f=dataURLtoFile(u);if(f){putFiles(id,[f],k);return}}
+  if(!/^https?:\/\//i.test(u)){toast("URL ảnh phải bắt đầu bằng http(s)://");return}
+  const it=item(id),a=ensureImgs(it),pos=(k!=null&&k>=0&&k<a.length)?k:firstFree(it,true);
+  if(pos<0){toast("Đã đủ "+MAXS+" vị trí ảnh");return}
+  let host="URL";try{host=new URL(u).hostname||"URL"}catch(e){}
+  const old=a[pos];
+  a[pos]={url:u,thumb:null,title:"URL thủ công",page:/^https?:/i.test(u)?u:"",site:host,src:"user",score:100,why:"người dùng thêm",at:Date.now()};
+  if(old)releaseImg(it,old);
+  if(id===LID)LREV.img.add(pos);
+  syncPrimary(it);save();afterImgChange(id);toast("✓ Đã gắn ảnh vào vị trí "+(pos+1));
+}
+function urlToSlot(k){if(!LID)return;const u=prompt("Dán URL ảnh (https://…)");if(u)setUrlSlot(LID,u,k)}
+function delSlot(k){
+  const t=byId(LID);if(!t)return;const it=item(t.id),a=ensureImgs(it),c=a[k];if(!c)return;
+  if(!confirm("Xoá ảnh ở vị trí "+(k+1)+" của 「"+t.jp+"」?"))return;
+  a[k]=null;releaseImg(it,c);LREV.img.delete(k);syncPrimary(it);save();afterImgChange(t.id);toast("Đã xoá ảnh vị trí "+(k+1));
+}
+function setN(d){
+  const t=byId(LID);if(!t)return;const it=item(t.id),a=ensureImgs(it),n=a.length+d;
+  if(n<MINS||n>MAXS)return;
+  if(d<0){const last=a[a.length-1];
+    if(last&&!confirm("Vị trí "+a.length+" đang có ảnh – xoá ảnh đó để bớt vị trí?"))return;
+    a.pop();if(last)releaseImg(it,last);LREV.img.delete(a.length)}
+  else a.push(null);
+  it.nslot=a.length;syncPrimary(it);save();afterImgChange(t.id);
+}
+function pickFiles(k,id){id=id||LID;if(!id)return;PICKK=k;PICKID=id;const f=$("#slotFile");f.value="";f.click()}
+$("#slotFile").addEventListener("change",async e=>{const fs=[...e.target.files];e.target.value="";const id=PICKID||LID;if(fs.length&&id)await putFiles(id,fs,PICKK)});
+/* ---- Tìm ảnh: mở trang tìm kiếm hình ảnh với từ khoá ở TAB MỚI (thay cho tìm ảnh tự động) ---- */
+const ENG={google:["Google Hình ảnh","https://www.google.com/search?tbm=isch&q="],
+  bing:["Bing Hình ảnh","https://www.bing.com/images/search?q="],
+  yahoo:["Yahoo! JAPAN 画像","https://search.yahoo.co.jp/image/search?p="]};
+const engOf=()=>ENG[S.set.engine]||ENG.google;
+const searchQ=t=>(String(t.jp||"").trim()+" "+String(S.set.suffix||"").trim()).trim();
+const searchURL=t=>engOf()[1]+encodeURIComponent(searchQ(t));
+function openSearch(t){
+  if(!t||!t.jp)return;
+  window.open(searchURL(t),"_blank","noopener");
+  SEARCHED=t.id;
+  const m="Đã mở "+engOf()[0]+" 「"+searchQ(t)+"」 ở tab mới → "+(TOUCH?"nhấn giữ ảnh › Lưu ảnh → quay lại bấm ↑ Tải ảnh lên (hoặc Sao chép địa chỉ ảnh → Dán URL ảnh)":"chuột phải ảnh › Sao chép hình ảnh → quay lại bấm Ctrl+V");
+  if(TAB==="learn"&&t.id===LID)$("#lnRun").textContent=m;
+  toast(m);
+}
+/* quay lại tab này sau khi tìm ảnh → nhắc dán */
+document.addEventListener("visibilitychange",()=>{
+  if(document.hidden||!SEARCHED)return;
+  const t=byId(SEARCHED)||(LKT&&LKT.id===SEARCHED?LKT:null);
+  const here=(TAB==="learn"&&SEARCHED===LID)||(TAB==="lookup"&&LKT&&LKT.id===SEARCHED);
+  SEARCHED="";
+  if(t&&here)toast(TOUCH?"Bấm ↑ Tải ảnh lên để thêm ảnh vừa lưu cho 「"+t.jp+"」":"Bấm Ctrl+V để dán ảnh vừa sao chép vào 「"+t.jp+"」");
+});
+
+/* ---- tiến độ / sao / AI ---- */
+function markLearn(ok){
+  const t=byId(LID);if(!t)return;
+  const s=S.srs[t.id]||{ok:0,ng:0};if(ok)s.ok=(s.ok||0)+1;else s.ng=(s.ng||0)+1;s.known=!!ok;s.at=Date.now();S.srs[t.id]=s;saveLearn();
+  const L0=LLIST,i=L0.findIndex(x=>x.id===t.id);
+  if($("#lLearn").value){LLIST=lFilter();drawIndex()}else refreshItem(t.id);
+  const ids=new Set(LLIST.map(x=>x.id));let nx="";
+  for(let j=i+1;j<L0.length;j++){if(ids.has(L0[j].id)){nx=L0[j].id;break}}
+  toast(ok?"✓ Đã thuộc: "+t.jp:"× Chưa thuộc: "+t.jp+" – sẽ ôn lại");
+  if(nx)selectTerm(nx);
+  else if(ids.has(t.id)){drawTerm();drawLbar();toast("Đã tới từ cuối danh sách")}
+  else if(LLIST.length)selectTerm(LLIST[LLIST.length-1].id);
+  else renderLearn();
+}
+function toggleStarL(){
+  const t=byId(LID);if(!t)return;if(S.star[t.id])delete S.star[t.id];else S.star[t.id]=true;saveLearn();
+  toast(S.star[t.id]?"★ Đã gắn sao "+t.jp:"Đã bỏ sao "+t.jp);
+  if(LSTAR){const i=LLIST.findIndex(x=>x.id===t.id);LLIST=lFilter();drawIndex();
+    if(!LLIST.length){renderLearn();return}
+    if(!LLIST.some(x=>x.id===LID)){selectTerm(LLIST[Math.max(0,Math.min(i,LLIST.length-1))].id);return}}
+  refreshItem(t.id);drawTerm();
+}
+async function aiExplain(){
+  const t=byId(LID);if(!t)return;
+  if(!S.set.gem){toast("Cần Gemini API key – nhập ở tab Cài đặt");return}
+  const b=$("#aAI");if(b){b.disabled=true;b.textContent="Đang hỏi AI…"}
+  try{await explain(t,true);save()}finally{if(LID===t.id)drawTerm()}
+}
+
+/* ---- xem ảnh lớn ---- */
+function openLB(k){LBK=k;LREV.img.add(k);$("#lb").classList.remove("hide");document.body.style.overflow="hidden";drawLB();$("#lbX").focus()}
+function drawLB(){
+  const t=byId(LID),a=t?ensureImgs(peek(t.id)):[],c=a[LBK];
+  if(!c){closeLB();return}
+  const im=$("#lbImg"),u=view(c.url);if(im.getAttribute("src")!==u)im.src=u;
+  im.alt="Ảnh "+(LBK+1)+" – "+t.jp;im.onerror=()=>{im.onerror=null;im.src=svgBroken};
+  const f=a.map((x,k)=>x?k:-1).filter(k=>k>=0);
+  $("#lbPrev").disabled=$("#lbNext").disabled=f.length<2;
+  $("#lbCap").innerHTML=`<b lang="ja">${esc(t.jp)}</b> · ảnh ${f.indexOf(LBK)+1}/${f.length} · ${esc(c.site||c.title||"")}`+
+    (c.page&&/^https?:/i.test(c.page)?` · <a href="${esc(c.page)}" target="_blank" rel="noopener">trang nguồn ↗</a>`:"");
+}
+function lbStep(d){const t=byId(LID);if(!t)return;const a=ensureImgs(peek(t.id)),f=a.map((x,k)=>x?k:-1).filter(k=>k>=0);if(f.length<2)return;
+  const i=f.indexOf(LBK);LBK=f[(i+d+f.length)%f.length];LREV.img.add(LBK);drawLB()}
+function closeLB(){const was=LBK;LBK=-1;$("#lb").classList.add("hide");document.body.style.overflow="";$("#lbImg").removeAttribute("src");
+  if(TAB==="learn"){drawImgs();drawLbar();const im=$('#slots .slot[data-k="'+was+'"] .sl-hide');if(im)im.focus({preventScroll:true})}}
+function lbKey(e){
+  if(e.key==="Escape"){e.preventDefault();closeLB()}
+  else if(e.key==="ArrowLeft"){e.preventDefault();lbStep(-1)}
+  else if(e.key==="ArrowRight"){e.preventDefault();lbStep(1)}
+  else if(e.key==="Tab"){e.preventDefault();const els=[$("#lbX"),$("#lbPrev"),$("#lbNext")].filter(x=>!x.disabled);
+    const i=els.indexOf(document.activeElement);els[(i+(e.shiftKey?-1:1)+els.length)%els.length].focus()}
+}
+$("#lbX").onclick=closeLB;$("#lbPrev").onclick=()=>lbStep(-1);$("#lbNext").onclick=()=>lbStep(1);
+$("#lb").addEventListener("click",e=>{if(e.target.id==="lb")closeLB()});
+
+/* ---- phím tắt tab Học ---- */
+function learnKey(e){
+  const tg=e.target,k=e.key,isBtn=/^(BUTTON|A|SUMMARY)$/.test(tg.tagName||"");
+  if(tg.classList&&tg.classList.contains("wi")&&(k==="ArrowDown"||k==="ArrowUp")){e.preventDefault();stepTerm(k==="ArrowDown"?1:-1);const el=$("#lList .wi.on");if(el)el.focus();return}
+  if(isBtn&&(k==="Enter"||k===" "))return;
+  if(k==="ArrowRight"||k==="j"||k==="J"){e.preventDefault();stepTerm(1)}
+  else if(k==="ArrowLeft"||k==="k"||k==="K"){e.preventDefault();stepTerm(-1)}
+  else if(k===" "){e.preventDefault();toggleAll()}
+  else if(k==="r"||k==="R")toggleY();
+  else if(k==="i"||k==="I")toggleAllImgs();
+  else if(k==="1")markLearn(false);
+  else if(k==="2")markLearn(true);
+  else if(k==="s"||k==="S")toggleStarL();
+  else if(k==="u"||k==="U")pickFiles(-1);
+  else if(k==="f"||k==="F")openSearch(byId(LID));
+}
+/* dán ảnh (Ctrl+V) hoặc URL ảnh vào từ đang học */
+document.addEventListener("paste",async e=>{
+  const id=TAB==="learn"?LID:(TAB==="lookup"&&LKT?LKT.id:"");if(!id)return;const tg=e.target;
+  if(/^(INPUT|TEXTAREA)$/.test(tg.tagName||"")||tg.isContentEditable)return;
+  const dt=e.clipboardData;if(!dt)return;
+  const files=[...dt.items].filter(x=>x.kind==="file"&&x.type.startsWith("image/")).map(x=>x.getAsFile()).filter(Boolean);
+  if(files.length){e.preventDefault();await putFiles(id,files,-1);return}
+  const h=dt.getData("text/html"),m=h&&/<img[^>]+src=["']([^"']+)["']/i.exec(h);
+  const s=(m?m[1]:(dt.getData("text")||"")).trim();
+  if(/^(https?:\/\/\S+|data:image\/\S+)$/i.test(s)){e.preventDefault();setUrlSlot(id,s,-1)}
+});
+
+/* ---- bộ lọc dùng chung (tab Học ⇄ Danh sách ⇄ Ôn tập) & nút ---- */
+function rerenderFiltered(){LCAP=300;if(TAB==="list")renderList();else if(TAB==="study")startDeck();else renderLearn()}
+function onFilter(src){
+  const g=FGRP.find(g=>g.includes(src)),v=$(src).value;
+  g.forEach(s=>$(s).value=v);
+  if(g[0]==="#lSort"){S.learn.sort=v;RANDK={};LS.set("kvt.learn",S.learn)}
+  rerenderFiltered();
+}
+FGRP.flat().forEach(s=>$(s).addEventListener("input",()=>onFilter(s)));
+function updLStar(){STARB.forEach(([s,l])=>{const b=$(s);
+  b.classList.toggle("on",LSTAR);b.setAttribute("aria-pressed",LSTAR);b.textContent=(LSTAR?"★":"☆")+" "+l})}
+STARB.forEach(([s])=>$(s).onclick=()=>{LSTAR=!LSTAR;updLStar();rerenderFiltered()});
+function resetFilters(){FGRP.forEach(g=>{if(g[0]!=="#lSort")g.forEach(s=>$(s).value="")});LSTAR=false;updLStar()}
+function clearLearnFilters(){resetFilters();rerenderFiltered()}
+["#lClear","#btnClear","#stClear"].forEach(s=>$(s).onclick=clearLearnFilters);
+$("#lPrev").onclick=()=>stepTerm(-1);$("#lNext").onclick=()=>stepTerm(1);
+$("#lReveal").onclick=toggleAll;
+$("#lHideY").onchange=e=>{S.learn.hideYomi=e.target.checked;LS.set("kvt.learn",S.learn);resetReveal(LID);drawLearn()};
+$("#lHideI").onchange=e=>{S.learn.hideImg=e.target.checked;LS.set("kvt.learn",S.learn);resetReveal(LID);drawLearn()};
+$("#lList").addEventListener("click",e=>{const b=e.target.closest(".wi");if(!b)return;selectTerm(b.dataset.id);
+  /* màn hẹp: danh sách nằm dưới thẻ → cuộn lên thẻ vừa chọn */
+  if(window.matchMedia&&matchMedia("(max-width:900px)").matches)$("#lWork").scrollIntoView({block:"start",behavior:matchMedia("(prefers-reduced-motion:reduce)").matches?"auto":"smooth"})});
+$("#aNg").onclick=()=>markLearn(false);$("#aOk").onclick=()=>markLearn(true);
+$("#aStar").onclick=toggleStarL;
+$("#bUp").onclick=()=>pickFiles(-1);$("#bFind").onclick=()=>openSearch(byId(LID));$("#bAll").onclick=toggleAllImgs;
+$("#slotAdd").onclick=()=>setN(1);$("#slotDel").onclick=()=>setN(-1);
+function openLearn(id){const t=byId(id);if(!t||isTmp(t))return;
+  if(!lFilter().some(x=>x.id===id))resetFilters();
+  LID=id;go("learn");window.scrollTo(0,0)}
+</script>
+<script>
+/* ============ 10. Tab Ôn tập (flashcard) – dùng CHUNG bộ lọc với tab Học & Danh sách ============ */
+let DECK=[],DI=0,FLIP=false,DN=0,DSIG=null,DTERMS=null;
+const ST_OPTS=["#stSrc","#stMode","#stShuffle","#stOnlyWeak"];
+const deckSig=()=>fSig()+"|"+$("#stSrc").value+"|"+$("#stMode").value+"|"+$("#stShuffle").checked+"|"+$("#stOnlyWeak").checked;
+/* bộ thẻ = các từ khớp bộ lọc (∩ bộ đã lưu nếu chọn) → bỏ thẻ đã thuộc (tuỳ chọn) → kiểu Ảnh→用語 chỉ lấy từ có ảnh → trộn */
+function startDeck(){
+  let L=lFilter();const v=$("#stSrc").value;
+  if(v.startsWith("col:")){const c=S.cols.find(c=>c.id===v.slice(4)),ids=new Set(c?c.ids:[]);L=L.filter(t=>ids.has(t.id))}
+  DN=L.length;
+  if($("#stOnlyWeak").checked)L=L.filter(t=>learnState(t)!=="known");
+  if($("#stMode").value==="i2t")L=L.filter(t=>hasImg(t));
+  if($("#stShuffle").checked)for(let i=L.length-1;i>0;i--){const j=Math.random()*(i+1)|0;[L[i],L[j]]=[L[j],L[i]]}
+  DECK=L;DI=0;FLIP=false;DSIG=deckSig();DTERMS=TERMS;drawCard();
+}
+function showStudy(){if(DSIG!==deckSig()||DTERMS!==TERMS)startDeck();else drawCard()}
+function drawCard(){
+  const F=$("#flash"),n=DECK.length,on=DI<n,m=$("#stMode").value;
+  ["#stShow","#stNo","#stYes"].forEach(s=>$(s).disabled=!on);$("#stPrev").disabled=!n||DI<=0;$("#stNext").disabled=!on;
+  $("#stStat").textContent=n+" thẻ"+(n!==DN?" (trong "+DN+" từ khớp lọc)":"");
+  F.className="flash";
+  if(!n){
+    const why=[$("#stSrc").value.startsWith("col:")?"chỉ lấy từ trong bộ đã lưu":"",$("#stOnlyWeak").checked?"đang bật “Chỉ thẻ chưa thuộc”":"",m==="i2t"?"kiểu “Ảnh → 用語” chỉ lấy từ đã có ảnh":""].filter(Boolean);
+    F.innerHTML=`<div class="big">Không có thẻ nào</div><div class="muted">Không có từ nào khớp bộ lọc${why.length?" · "+esc(why.join(" · ")):""}.</div>
+      <div class="row" style="justify-content:center"><button class="btn" id="stClr">Xoá lọc</button></div>`;
+    $("#stPos").textContent="";return;
+  }
+  if(!on){
+    const ok=DECK.filter(t=>learnState(t)==="known").length,ng=n-ok;
+    F.innerHTML=`<div class="big">Xong!</div><div class="muted">Đã ôn ${n} thẻ · đã thuộc ${ok} · chưa thuộc ${ng}</div>
+      <div class="row" style="justify-content:center"><button class="btn pri" id="stAgain">${ICON_RE} Ôn lại</button>${ng?`<button class="btn" id="stWeak">Chỉ ôn ${ng} thẻ chưa thuộc</button>`:""}</div>`;
+    $("#stPos").textContent=n+" / "+n;return;
+  }
+  const t=DECK[DI],ims=imgsOf(t),st=learnState(t);
+  const meta=`<div class="fmeta"><span class="mono">No. ${esc(pad4(t.no))}</span><span lang="ja">${esc(t.fields.concat(t.parts).join(" · "))}</span><span class="grow"></span><span class="lst ${st}">${S.star[t.id]?"★ ":""}${LSTLAB[st]}</span></div>`;
+  const pics=ims.length?`<div class="fimgs n${ims.length}">${ims.map((c,k)=>`<img src="${esc(view(c.url))}" alt="${esc("Ảnh "+(k+1)+(m==="i2t"?"":" – "+t.jp))}" onerror="this.onerror=null;this.src=svgBroken">`).join("")}</div>`
+    :'<div class="fnoimg">(chưa có ảnh)</div>';
+  let h;
+  if(!FLIP){
+    F.classList.add("fc","front");
+    if(m==="i2t")h=pics;
+    else if(m==="v2t")h=`<div class="fvn">${esc(t.vn||"—")}</div>`+(t.en?`<div class="muted">${esc(t.en)}</div>`:"");
+    else h=`<div class="fterm" lang="ja">${esc(t.jp)}</div>`+pics;
+    h+='<div class="fhint sm muted">Bấm vào thẻ<span class="kb"> hoặc <kbd>Space</kbd></span> để lật</div>';
+  }else{
+    F.classList.add("fc","back");
+    const s=S.srs[t.id]||{};
+    h=`<div class="fterm" lang="ja">${esc(t.jp)}</div>`+(t.yomi?`<div class="yv" lang="ja">${esc(t.yomi)}</div>`:'<div class="muted">— chưa có cách đọc —</div>')
+      +(m==="i2t"&&ims.length?`<div class="thumbs">${ims.map(c=>`<img src="${esc(view(c.url))}" alt="" onerror="this.onerror=null;this.src=svgBroken">`).join("")}</div>`:"")
+      +`<div class="fback"><dl class="spec">${specHTML(t,peek(t.id).ex,true)}</dl>${chipsHTML(t)?`<div class="chips">${chipsHTML(t)}</div>`:""}
+      <div class="arow"><span class="lab">Tiến độ</span><span class="sm"><span class="lst ${st}">${LSTLAB[st]}</span>${(s.ok||s.ng)?`<span class="muted"> · đúng ${s.ok||0} · sai ${s.ng||0}</span>`:""}</span>
+      <span class="grow"></span><button class="btn sm ghost" id="stAI">${ICON_AI} Giải thích AI</button></div></div>`;
+  }
+  F.innerHTML=meta+h;
+  $("#stPos").textContent=(DI+1)+" / "+n;
+}
+function flipCard(){if(DI>=DECK.length)return;FLIP=!FLIP;drawCard()}
+function stStep(d){if(!DECK.length)return;DI=Math.max(0,Math.min(DECK.length,DI+d));FLIP=false;drawCard()}
+async function stAI(){
+  const t=DECK[DI];if(!t)return;
+  if(!S.set.gem){toast("Cần Gemini API key – nhập ở tab Cài đặt");return}
+  const b=$("#stAI");if(b){b.disabled=true;b.textContent="Đang hỏi AI…"}
+  try{await explain(t,true);save()}finally{if(TAB==="study"&&DECK[DI]===t)drawCard()}
+}
+$("#stShow").onclick=flipCard;
+$("#stPrev").onclick=()=>stStep(-1);$("#stNext").onclick=()=>stStep(1);
+$("#stStart").onclick=startDeck;
+ST_OPTS.forEach(s=>$(s).addEventListener("change",e=>{startDeck();e.target.blur()}));   // bỏ focus để Space / 1 / 2 dùng được ngay
+["#stField","#stPart","#stRow","#stImg","#stLearn"].forEach(s=>$(s).addEventListener("change",e=>e.target.blur()));
+$("#flash").addEventListener("click",e=>{
+  const g=e.target.closest("button");
+  if(g){if(g.id==="stAI")stAI();else if(g.id==="stClr")clearLearnFilters();else if(g.id==="stAgain")startDeck();
+    else if(g.id==="stWeak"){$("#stOnlyWeak").checked=true;startDeck()}return}
+  if(String(window.getSelection&&window.getSelection()||"").trim())return;   // đang bôi đen chữ → không lật
+  if(e.target.closest(".fc"))flipCard();
+});
+function mark(ok){
+  if(DI>=DECK.length)return;const t=DECK[DI];
+  const s=S.srs[t.id]||{ok:0,ng:0};if(ok)s.ok=(s.ok||0)+1;else s.ng=(s.ng||0)+1;s.known=!!ok;s.at=Date.now();S.srs[t.id]=s;saveLearn();
+  DI++;FLIP=false;drawCard();
+}
+$("#stYes").onclick=()=>mark(true);
+$("#stNo").onclick=()=>mark(false);
+
+/* ============ 11. Tab Lưu / Xuất ============ */
+function renderCols(){
+  $("#colList").innerHTML=S.cols.map(c=>`<div class="row" style="border-top:1px solid var(--line);padding:8px 0">
+    <b>${esc(c.name)}</b><span class="chip">${c.ids.length} từ</span>
+    <span class="muted sm">${new Date(c.at).toLocaleDateString()}</span><span class="grow"></span>
+    <button class="btn sm cOpen" data-id="${esc(c.id)}">Mở để ôn</button>
+    <button class="btn sm cDel" data-id="${esc(c.id)}">Xoá</button></div>`).join("")||'<div class="muted sm">Chưa có bộ nào.</div>';
+  $$("#colList .cOpen").forEach(b=>b.onclick=()=>{const c=S.cols.find(x=>x.id===b.dataset.id);if(!c)return;
+    fillDeckOptions(c.id);
+    const vis=new Set(lFilter().map(t=>t.id));if(c.ids.some(id=>{const t=byId(id);return t&&!isTmp(t)&&!vis.has(id)}))resetFilters();   // bộ lọc đang che bớt từ của bộ → xoá lọc
+    go("study");startDeck();window.scrollTo(0,0)});
+  $$("#colList .cDel").forEach(b=>b.onclick=()=>{S.cols=S.cols.filter(c=>c.id!==b.dataset.id);save();renderCols();fillDeckOptions()});
+}
+function fillDeckOptions(pick){
+  const v=$("#stSrc").value;
+  $("#stSrc").innerHTML='<option value="all">Bộ: các từ khớp bộ lọc</option>'+S.cols.map(c=>`<option value="col:${esc(c.id)}">Bộ lưu: ${esc(c.name)} (${c.ids.length})</option>`).join("");
+  if(pick)$("#stSrc").value="col:"+pick;else if([...$("#stSrc").options].some(o=>o.value===v))$("#stSrc").value=v;
+}
+$("#colSave").onclick=()=>{
+  const ids=sel.size?[...sel]:filtered().map(t=>t.id);
+  const name=$("#colName").value.trim()||("Bộ "+new Date().toLocaleString());
+  S.cols.unshift({id:"c"+Date.now(),name,ids,at:Date.now()});save();$("#colName").value="";
+  renderCols();fillDeckOptions();toast("Đã lưu "+ids.length+" từ");
+};
+function dl(name,text,mime){
+  const b=new Blob([text],{type:mime||"application/json"}),u=URL.createObjectURL(b);
+  const a=document.createElement("a");a.href=u;a.download=name;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(u),1000);
+}
+async function asData(u){if(!u)return"";if(u.startsWith("idb:")){const v=await idbGet(u.slice(4));return v||""}return u.startsWith("data:")?u:""}
+$("#exJson").onclick=async()=>{
+  toast("Đang đóng gói…");
+  const items=JSON.parse(JSON.stringify(S.items));
+  for(const id in items){const i=items[id];
+    for(const c of [i.approved].concat(i.cands||[],i.imgs||[])){
+      if(c&&c.url&&c.url.startsWith("idb:")){const d=await asData(c.url);if(d)c.url=d}}}
+  dl("kenchiku-vocab-images.json",JSON.stringify({v:2,at:new Date().toISOString(),items,cols:S.cols,srs:S.srs,star:S.star,learn:S.learn,terms:TERMS.filter(t=>!isTmp(t))}));
+  toast("Đã xuất backup (kèm ảnh)");
+};
+$("#exCsv").onclick=()=>{
+  const q=s=>'"'+String(s??"").replace(/"/g,'""')+'"';
+  const rows=[["No.","用語","よみ","意味（JP）","Nghĩa (VN)","English / BIM","画像URL1","画像URL2","画像URL3","画像URL4","出典ページ"]];
+  TERMS.forEach(t=>{if(isTmp(t))return;const a=imgsOf(t);if(!a.length)return;
+    const u=[0,1,2,3].map(k=>a[k]?(/^(data:|idb:)/.test(a[k].url)?"(ảnh cục bộ – dùng nút Tải ảnh cục bộ)":a[k].url):"");
+    rows.push([t.no,t.jp,t.yomi,t.mjp,t.vn,t.en,...u,a.map(x=>x.page).filter(Boolean).join(" | ")])});
+  if(rows.length<2){toast("Chưa có từ nào có ảnh");return}
+  dl("notion-import.csv","\uFEFF"+rows.map(r=>r.map(q).join(",")).join("\n"),"text/csv");
+};
+$("#exImgs").onclick=async()=>{
+  const jobs=[];
+  TERMS.forEach(t=>{if(isTmp(t))return;const it=S.items[t.id];if(!it)return;
+    const a=Array.isArray(it.imgs)?it.imgs:(it.approved?[it.approved]:[]);
+    a.forEach((c,k)=>{if(c&&/^(data:|idb:)/.test(c.url))jobs.push([t,c,k])})});
+  if(!jobs.length){toast("Không có ảnh cục bộ nào");return}
+  toast("Đang tải "+jobs.length+" ảnh…");
+  for(const [t,c,k] of jobs){
+    const d=await asData(c.url);if(!d)continue;
+    const ext=/^data:image\/png/.test(d)?".png":/^data:image\/svg/.test(d)?".svg":/^data:image\/webp/.test(d)?".webp":".jpg";
+    const a=document.createElement("a");a.href=d;
+    a.download=pad4(t.no)+"_"+String(t.jp).replace(/[\\/:*?"<>|]/g,"")+"_"+(k+1)+ext;
+    document.body.appendChild(a);a.click();a.remove();
+    await sleep(200);
+  }
+  toast("Xong – tên file = No._用語_vị trí, kéo thả vào Notion");
+};
+async function relocate(){
+  let n=0;
+  for(const id in S.items){const i=S.items[id];
+    for(const c of [i.approved].concat(i.cands||[],i.imgs||[])){
+      if(c&&c.url&&c.url.startsWith("data:")){c.url=await storeImg(c.url);n++}}
+    if(Array.isArray(i.imgs))syncPrimary(i);}
+  if(n){save();toast("Đã chuyển "+n+" ảnh vào kho IndexedDB")}
+  usage();
+}
+const normT=t=>({id:t.id||"t"+t.no,no:t.no,jp:String(t.jp||"").trim(),yomi:t.yomi||"",mjp:t.mjp||"",vn:t.vn||"",en:t.en||"",
+  fields:splitL(t.fields),parts:splitL(t.parts),row:t.row||"",memo:t.memo||""});
+$("#imBtn").onclick=()=>$("#imFile").click();
+$("#imFile").onchange=e=>{const f=e.target.files[0];if(!f)return;e.target.value="";const fr=new FileReader();
+  fr.onload=()=>{try{const j=JSON.parse(fr.result);S.items=j.items||S.items;S.cols=j.cols||S.cols;S.srs=j.srs||S.srs;if(j.star)S.star=j.star;
+    if(Array.isArray(j.terms)&&j.terms.length){TERMS=fillMemo(j.terms.map(normT).filter(t=>t.jp));persistTerms();initFilters()}
+    save();renderCols();fillDeckOptions();go(TAB);toast("Đã nhập dữ liệu");relocate()}catch(err){toast("File không hợp lệ")}};fr.readAsText(f)};
+$("#wipe").onclick=()=>{if(!confirm("Xoá toàn bộ ảnh, bộ ôn tập và tiến độ học trong trình duyệt này?"))return;
+  S.items={};S.cols=[];S.srs={};save();try{idbClear()}catch(e){}for(const k in IMGC)delete IMGC[k];
+  LREV.id="";renderCols();fillDeckOptions();usage();toast("Đã xoá dữ liệu cục bộ")};
+async function usage(){
+  let n=0;Object.keys(localStorage).forEach(k=>{if(k.startsWith("kvt."))n+=(localStorage.getItem(k)||"").length});
+  const T=TERMS.filter(t=>!isTmp(t)),w=T.filter(hasImg).length,ni=T.reduce((s,t)=>s+imgsOf(t).length,0);
+  let extra="";
+  try{const ks=await idbKeys();extra=" · kho ảnh IndexedDB: <b>"+ks.length+"</b>"}catch(e){}
+  try{if(navigator.storage&&navigator.storage.estimate){const e=await navigator.storage.estimate();
+    extra+=" · đã dùng <b>"+(e.usage/1048576).toFixed(1)+" MB</b> / "+(e.quota/1073741824).toFixed(1)+" GB"}}catch(e){}
+  $("#usage").innerHTML=`localStorage: <b>${(n/1024).toFixed(0)} KB</b> · từ có ảnh: <b>${w}</b> · tổng ảnh: <b>${ni}</b>`+extra;
+}
+
+/* ============ 12. Tab Cài đặt ============ */
+const bind=(id,key,type)=>{const el=$(id);
+  el[type==="c"?"checked":"value"]=S.set[key]??"";
+  el.addEventListener("change",()=>{S.set[key]=type==="c"?el.checked:(type==="n"?+el.value:el.value);save();onSet(key)});};
+function onSet(key){if(key==="slots"&&TAB==="learn"){drawImgs();drawLbar()}if(key==="engine"||key==="suffix")updEngHint()}
+bind("#sGem","gem");bind("#sModel","model");bind("#sSlots","slots","n");bind("#sEngine","engine");bind("#sSuffix","suffix");
+function updEngHint(){$("#sEngHint").innerHTML="Ví dụ với 「柱」: mở <b>"+esc(engOf()[0])+"</b> và tìm 「"+esc(searchQ({jp:"柱"}))+"」."}
+$("#sTryEng").onclick=()=>openSearch({id:"",jp:"柱"});
+$("#sTest").onclick=async()=>{
+  if(!S.set.gem){toast("Chưa nhập Gemini key");return}
+  try{const j=await gemJSON('Trả JSON {"ok":"pong"}',{type:"object",properties:{ok:{type:"string"}},required:["ok"]});toast("Gemini OK: "+j.ok)}
+  catch(e){toast("Lỗi: "+e.message)}
+};
+$("#sModels").onclick=async()=>{
+  if(!S.set.gem)return toast("Chưa nhập Gemini key");
+  try{
+    const base="https://generativelanguage.googleapis.com/v1beta/models?pageSize=200&key="+encodeURIComponent(S.set.gem);
+    let url=base,all=[];
+    for(let i=0;i<4&&url;i++){
+      const r=await fetch(url);
+      if(!r.ok)throw new Error(r.status+": "+(await r.text()).slice(0,120));
+      const j=await r.json();all=all.concat(j.models||[]);
+      url=j.nextPageToken?base+"&pageToken="+encodeURIComponent(j.nextPageToken):"";
+    }
+    const names=all.filter(m=>(m.supportedGenerationMethods||m.supportedActions||["generateContent"]).some(x=>/generateContent/i.test(x)))
+      .map(m=>String(m.name||"").replace(/^models\//,"")).filter(Boolean).sort();
+    const txt=names.filter(n=>!/image|embedding|aqa|tts|veo|imagen|live|audio/i.test(n));
+    if(txt.length)$("#mdList").innerHTML=txt.map(n=>'<option value="'+esc(n)+'">').join("");
+    const pref=["gemini-3.8-flash","gemini-3.6-flash"].find(n=>txt.includes(n));
+    if(pref&&!txt.includes(S.set.model)){S.set.model=pref;$("#sModel").value=pref}
+    save();
+    toast(txt.length+" model text – bấm vào ô Model để chọn");
+  }catch(e){toast("Lỗi lấy danh sách: "+e.message)}
+};
+$("#dImport").onclick=()=>$("#dFile").click();
+function parseCSV(text){
+  text=text.replace(/^\uFEFF/,"");
+  const rows=[];let row=[],cell="",q=false;
+  for(let i=0;i<text.length;i++){const ch=text[i];
+    if(q){if(ch==='"'){if(text[i+1]==='"'){cell+='"';i++}else q=false}else cell+=ch}
+    else if(ch==='"')q=true;
+    else if(ch===","){row.push(cell);cell=""}
+    else if(ch==="\n"){row.push(cell);cell="";rows.push(row);row=[]}
+    else if(ch!=="\r")cell+=ch;}
+  if(cell.length||row.length){row.push(cell);rows.push(row)}
+  return rows.filter(r=>r.some(c=>String(c).trim()!==""));
+}
+const COL={jp:["用語","Term","Name","名前"],yomi:["よみ","読み","Yomi"],
+  mjp:["意味（JP）","意味(JP)","意味"],vn:["Nghĩa (VN)","Nghia (VN)","Nghĩa"],
+  en:["English / BIM","English/BIM","English"],fields:["分野","Field"],parts:["部位","Part"],
+  row:["50音","50音行"],no:["No.","No","番号"],memo:["メモ（現場・図面）","メモ(現場・図面)","メモ","Memo","Ghi chú"]};
+function pickCol(o,keys){for(const k of keys){if(o[k]!=null&&String(o[k]).trim()!=="")return o[k]}return ""}
+function toTerms(objs){
+  return objs.map((o,i)=>{const no=parseInt(pickCol(o,COL.no),10)||i+1;
+    return {id:"t"+no,no:no,jp:String(pickCol(o,COL.jp)||"").trim(),yomi:String(pickCol(o,COL.yomi)||"").trim(),
+      mjp:String(pickCol(o,COL.mjp)||"").trim(),vn:String(pickCol(o,COL.vn)||"").trim(),en:String(pickCol(o,COL.en)||"").trim(),
+      fields:splitL(pickCol(o,COL.fields)),parts:splitL(pickCol(o,COL.parts)),
+      row:String(pickCol(o,COL.row)||"").trim(),memo:String(pickCol(o,COL.memo)||"").trim()}}).filter(t=>t.jp);
+}
+function applyTerms(objs){
+  const t=toTerms(objs);
+  if(!t.length){toast("Không thấy cột 用語 trong file");return}
+  TERMS=fillMemo(t);persistTerms();
+  initFilters();go(TAB);toast("Đã nạp "+TERMS.length+" từ · đã nhớ cho lần sau");
+}
+$("#dFile").onchange=e=>{const f=e.target.files[0];if(!f)return;e.target.value="";const fr=new FileReader();
+  fr.onload=()=>{try{
+    let objs=[];
+    if(/\.json$/i.test(f.name)){const j=JSON.parse(fr.result);objs=Array.isArray(j)?j:(j.rows||[])}
+    else{const rows=parseCSV(fr.result);const head=rows.shift().map(h=>String(h).trim());
+      objs=rows.map(r=>{const o={};head.forEach((h,i)=>o[h]=r[i]);return o})}
+    applyTerms(objs);
+  }catch(err){toast("Không đọc được file: "+err.message)}};
+  fr.readAsText(f,"utf-8")};
+$("#dReset").onclick=()=>{localStorage.removeItem("kvt.terms");TERMS=rawToTerms(RAW);initFilters();go(TAB);toast("Đã quay về bộ "+TERMS.length+" từ mẫu")};
+
+/* ============ 13. Init ============ */
+const ROWORD=["あ行","か行","さ行","た行","な行","は行","ま行","や行","ら行","わ行","英字","数字"];
+function byFreq(arr){const m=new Map();arr.forEach(x=>m.set(x,(m.get(x)||0)+1));return [...m.keys()].sort((a,b)=>m.get(b)-m.get(a)||a.localeCompare(b,"ja"))}
+function setOpts(s,label,vals){const el=$(s),v=el.value;
+  el.innerHTML=`<option value="">${label}: tất cả</option>`+vals.map(x=>`<option value="${esc(x)}">${esc(x)}</option>`).join("");
+  if(vals.includes(v))el.value=v}
+function initFilters(){
+  const T=TERMS.filter(t=>!isTmp(t));
+  const F=byFreq(T.flatMap(t=>t.fields)),P=byFreq(T.flatMap(t=>t.parts));
+  const R=[...new Set(T.map(t=>t.row).filter(Boolean))].sort((a,b)=>{const ia=ROWORD.indexOf(a),ib=ROWORD.indexOf(b);return (ia<0?99:ia)-(ib<0?99:ib)||a.localeCompare(b,"ja")});
+  ["#fField","#lField","#stField"].forEach(s=>setOpts(s,"分野",F));["#fPart","#lPart","#stPart"].forEach(s=>setOpts(s,"部位",P));["#fRow","#lRow","#stRow"].forEach(s=>setOpts(s,"50音",R));
+  $("#dlField").innerHTML=F.map(x=>`<option value="${esc(x)}">`).join("");$("#dlPart").innerHTML=P.map(x=>`<option value="${esc(x)}">`).join("");
+  $("#terms").innerHTML=T.slice(0,800).map(t=>`<option value="${esc(t.jp)}">${esc(t.yomi)} – ${esc(t.vn)}</option>`).join("");
+  $("#cnt").textContent=T.length;
+}
+$("#lHideY").checked=S.learn.hideYomi!==false;$("#lHideI").checked=S.learn.hideImg!==false;
+$("#lSort").value=$("#fSort").value=["no","yomi","rand"].includes(S.learn.sort)?S.learn.sort:"no";
+LID=S.learn.last&&byId(S.learn.last)?S.learn.last:"";
+initFilters();updEngHint();renderCols();fillDeckOptions();go("learn");usage();
+</script>
+</body>
+</html>
